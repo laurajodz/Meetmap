@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FAF0E6;
+}
+
+header {
+  font-size: 35px;
+}
+
+#map {
+  height: 400px;
+  width: 50%;
+}
+
+#category {
+  display: block;
+}

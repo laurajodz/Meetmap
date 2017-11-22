@@ -11,7 +11,7 @@ header {
 }
 
 #map {
-  height: 700px;
+  height: 610px;
   width: 100%;
 }
 
@@ -19,7 +19,7 @@ header {
   column-count: 3;
 }
 
-.container {
+.container, .location, .radius {
   column-count: 2;
 }
 

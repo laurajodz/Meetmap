@@ -20,8 +20,9 @@
           <fieldset id="location-fieldset" role="group">
             <legend>Location</legend>
             <div class="location">
-              <label for="js-location-id">Change Zip Code or City</label><input type="text" class="js-loc" id="js-location-id" value="" name="js-location">
-            </div>
+              <div>
+                <label for="location-id">Change Zip Code or City</label><input type="text" class="loc" id="location-id" value="" name="js-location">
+              </div>
             <!-- <div class="radius">
               <button class="dropbtn">Radius</button>
               <div id="radius-dropdown" class="dropdown-content">
@@ -32,132 +33,133 @@
                 <p>50 miles</p>
                 <p>100 miles</p>
               </div> -->
-            <div class="radius">
-              <p>Radius:</p>
-              <div>
-                <input type="radio" id="radius2" value="2miles" name="rad">
-                <label for "radius2">2 miles</label>
-              </div>
-              <div>
-                <input type="radio" id="radius5" value="5miles" name="rad">
-                <label for "radius5">5 miles</label>
-              </div><div>
-                <input type="radio" id="radius10" value="10miles" name="rad">
-                <label for "radius10">10 miles</label>
-              </div><div>
-                <input type="radio" id="radius25" value="25miles" name="rad">
-                <label for "radius25">25 miles</label>
-              </div><div>
-                <input type="radio" id="radius50" value="50miles" name="rad">
-                <label for "radius50">50 miles</label>
-              </div><div>
-                <input type="radio" id="radius100" value="100miles" name="rad">
-                <label for "radius100">100 miles</label>
-              </div>
+              <div class="radius">
+                <p>Radius:</p>
+                <div>
+                  <input type="radio" id="radius2" value="2miles" name="rad">
+                  <label for "radius2">2 miles</label>
+                </div>
+                <div>
+                  <input type="radio" id="radius5" value="5miles" name="rad">
+                  <label for "radius5">5 miles</label>
+                </div><div>
+                  <input type="radio" id="radius10" value="10miles" name="rad">
+                  <label for "radius10">10 miles</label>
+                </div><div>
+                  <input type="radio" id="radius25" value="25miles" name="rad">
+                  <label for "radius25">25 miles</label>
+                </div><div>
+                  <input type="radio" id="radius50" value="50miles" name="rad">
+                  <label for "radius50">50 miles</label>
+                </div><div>
+                  <input type="radio" id="radius100" value="100miles" name="rad">
+                  <label for "radius100">100 miles</label>
+                </div>
+              </div>  
             </div>
           </fieldset>
           <fieldset id="category-fieldset" role="group">
             <legend>Categories</legend>
             <div class="categories">
               <div>
-                <input type="checkbox" id="js-cat-all" value="All Meetups" name="cat">
-                <label for="js-cat-all">All Meetups</label>
+                <input type="checkbox" id="cat-all" value="All Meetups" name="cat">
+                <label for="cat-all">All Meetups</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-arts" value="Arts" name="cat">
-                <label for="js-cat-arts">Arts</label>
+                <input type="checkbox" id="cat-arts" value="Arts" name="cat">
+                <label for="cat-arts">Arts</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-beliefs" value="Beliefs" name="cat">
-                <label for="js-cat-beliefs">Beliefs</label>
+                <input type="checkbox" id="cat-beliefs" value="Beliefs" name="cat">
+                <label for="cat-beliefs">Beliefs</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-book" value="Book Clubs" name="cat">
-                <label for="js-cat-book">Book Clubs</label>
+                <input type="checkbox" id="cat-book" value="Book Clubs" name="cat">
+                <label for="cat-book">Book Clubs</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-career" value="Career & Business" name="cat">
-                <label for="js-cat-career">Career & Business</label>
+                <input type="checkbox" id="cat-career" value="Career & Business" name="cat">
+                <label for="cat-career">Career & Business</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-dance" value="Dance" name="cat">
-                <label for="js-cat-dance">Dance</label>
+                <input type="checkbox" id="cat-dance" value="Dance" name="cat">
+                <label for="cat-dance">Dance</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-family" value="Family" name="cat">
-                <label for="js-cat-family">Family</label>
+                <input type="checkbox" id="cat-family" value="Family" name="cat">
+                <label for="cat-family">Family</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-fashion" value="Fashion & Beauty" name="cat">
-                <label for="js-cat-fashion">Fashion & Beauty</label>
+                <input type="checkbox" id="cat-fashion" value="Fashion & Beauty" name="cat">
+                <label for="cat-fashion">Fashion & Beauty</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-film" value="Film" name="cat">
-                <label for="js-cat-film">Film</label>
+                <input type="checkbox" id="cat-film" value="Film" name="cat">
+                <label for="cat-film">Film</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-food" value="Food & Drinks" name="cat">
-                <label for="js-cat-food">Food & Drinks</label>
+                <input type="checkbox" id="cat-food" value="Food & Drinks" name="cat">
+                <label for="cat-food">Food & Drinks</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-health" value="Health & Wellness" name="cat">
-                <label for="js-cat-health">Health & Wellness</label>
+                <input type="checkbox" id="cat-health" value="Health & Wellness" name="cat">
+                <label for="cat-health">Health & Wellness</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-hobbies" value="Hobbies & Crafts" name="cat">
-                <label for="js-cat-hobbies">Hobbies & Crafts</label>
+                <input type="checkbox" id="cat-hobbies" value="Hobbies & Crafts" name="cat">
+                <label for="cat-hobbies">Hobbies & Crafts</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-lgbtq" value="LGBTQ" name="cat">
-                <label for="js-cat-lgbtq">LGBTQ</label>
+                <input type="checkbox" id="cat-lgbtq" value="LGBTQ" name="cat">
+                <label for="cat-lgbtq">LGBTQ</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-language" value="Language & Culture" name="cat">
-                <label for="js-cat-language">Language & Culture</label>
+                <input type="checkbox" id="cat-language" value="Language & Culture" name="cat">
+                <label for="cat-language">Language & Culture</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-learning" value="Learning" name="cat">
-                <label for="js-cat-learning">Learning</label>
+                <input type="checkbox" id="cat-learning" value="Learning" name="cat">
+                <label for="cat-learning">Learning</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-movements" value="Movements" name="cat">
-                <label for="js-cat-movements">Movements</label>
+                <input type="checkbox" id="cat-movements" value="Movements" name="cat">
+                <label for="cat-movements">Movements</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-music" value="Music" name="cat">
-                <label for="js-cat-music">Music</label>
+                <input type="checkbox" id="cat-music" value="Music" name="cat">
+                <label for="cat-music">Music</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-outdoors" value="Outdoors & Adventure" name="cat">
-                <label for="js-cat-outdoors">Outdoors & Adventure</label>
+                <input type="checkbox" id="cat-outdoors" value="Outdoors & Adventure" name="cat">
+                <label for="cat-outdoors">Outdoors & Adventure</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-pets" value="Pets" name="cat">
-                <label for="js-cat-pets">Pets</label>
+                <input type="checkbox" id="cat-pets" value="Pets" name="cat">
+                <label for="cat-pets">Pets</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-photography" value="Photography" name="cat">
-                <label for="js-cat-photography">Photography</label>
+                <input type="checkbox" id="cat-photography" value="Photography" name="cat">
+                <label for="cat-photography">Photography</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-scifi" value="Sci-Fi & Games" name="cat">
-                <label for="js-cat-scifi">Sci-Fi & Games</label>
+                <input type="checkbox" id="cat-scifi" value="Sci-Fi & Games" name="cat">
+                <label for="cat-scifi">Sci-Fi & Games</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-social" value="Social" name="cat">
-                <label for="js-cat-social">Social</label>
+                <input type="checkbox" id="cat-social" value="Social" name="cat">
+                <label for="cat-social">Social</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-sports" value="Sports & Fitness" name="cat">
-                <label for="js-cat-sports">Sports & Fitness</label>
+                <input type="checkbox" id="cat-sports" value="Sports & Fitness" name="cat">
+                <label for="cat-sports">Sports & Fitness</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-tech" value="Tech" name="cat">
-                <label for="js-cat-tech">Tech</label>
+                <input type="checkbox" id="cat-tech" value="Tech" name="cat">
+                <label for="cat-tech">Tech</label>
               </div>
               <div>
-                <input type="checkbox" id="js-cat-writing" value="Writing" name="cat">
-                <label for="js-cat-writing">Writing</label>
+                <input type="checkbox" id="cat-writing" value="Writing" name="cat">
+                <label for="cat-writing">Writing</label>
               </div>
             </div>
           </fieldset>

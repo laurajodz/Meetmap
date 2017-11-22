@@ -329,38 +329,68 @@ function populateInfoWindow(marker, infowindow) {
   }
 }
 
-// const queryTargetKeyword = $(event.currentTarget).find('#js-keyword');
-// const queryKeyword = queryTarget.val();
-// const queryTargetCategory = $(event.currentTarget).find('#js-keyword');
-// const queryCategory = queryTarget.val();
-
-
 function displayResults(data){
-    data.events.forEach(ev => {
-        $('.results').append(ev.description);
+    console.log(data);
+    locations = data.events.map(function(ev){
+      return {
+        title: ev.name,
+        location: {
+          lat: ev.group.lat,
+            lng: ev.group.lon
+        }
+      }
     });
+    showMarkers();
 }
 
 
+function searchButtonHandler(e){
+
+
+   //1. get all inputs
+   const city = $('#js-location-id').val();
+   console.log('City:', city);
+
+   const radius = $('input[name="rad"]:checked').val();
+    console.log('Radius:', radius);
+
+   const key = $('#keyword').val();
+   //2. make the call to meetups
+   //3. display markers
+
+
+    const q = {
+        key: "524472e125072465129556564d2f74",
+        text: key,
+        fields:'comment_count,featured',
+        callback:"handlerequest"
+    }
+    $.ajax({
+        url:'https://api.meetup.com/find/upcoming_events',
+        method:'GET',
+        data: q,
+        dataType:"jsonp",
+        crossDomain:true
+    }).done(res => {
+        displayResults(res.data);
+    })
+}
+
 
 $(function(){
-    $('#btn').click(function(e){
-        const q = {
-            key: "524472e125072465129556564d2f74",
-            description: `${keyword}`,
-            
-            callback:"handlerequest"
-        }
-        $.ajax({
-            url:'https://api.meetup.com/find/upcoming_events',
-            method:'GET',
-            data: q,
-            dataType:"jsonp",
-            crossDomain:true
-        }).done(res => {
-           displayResults(res.data);
-        })
+  //runs once when the page loads
+  // where you set all your event handlers
+
+    // event handler for the Button
+    $('#btn').click(searchButtonHandler);
+
+    //event handler for the location box
+    $('#js-location-id').keyup(function(e){
+       console.log($(this).val());
+    });
+
+    //form handler
+    $('#js-adjust-params').submit(function(e){
+      e.preventDefault();
     });
 })
-
-// map.data.loadGeoJson('http://www.CORS-ENABLED-SITE.com/data.json');

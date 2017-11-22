@@ -14,11 +14,231 @@
     <header role="banner">MeetMap - Meetups on a Map</header>
     <main role="main">
       <div class="container">
-        
+        <div id="map">
+        </div>
+        <form action="" method="" class="adjust-params" id="js-adjust-params">
+          <fieldset id="location-fieldset" role="group">
+            <legend>Location</legend>
+            <div class="location">
+              <label for="js-location-id">Change Zip Code or City</label><input type="text" class="js-loc" id="js-location-id" value="" name="js-location">
+            </div>
+            <!-- <div class="radius">
+              <button class="dropbtn">Radius</button>
+              <div id="radius-dropdown" class="dropdown-content">
+                <p>2 miles</p>
+                <p>5 miles</p>
+                <p>10 miles</p>
+                <p>25 miles</p>
+                <p>50 miles</p>
+                <p>100 miles</p>
+              </div> -->
+            <div class="radius">
+              <p>Radius:</p>
+              <div>
+                <input type="radio" id="radius2" value="2miles" name="rad">
+                <label for "radius2">2 miles</label>
+              </div>
+              <div>
+                <input type="radio" id="radius5" value="5miles" name="rad">
+                <label for "radius5">5 miles</label>
+              </div><div>
+                <input type="radio" id="radius10" value="10miles" name="rad">
+                <label for "radius10">10 miles</label>
+              </div><div>
+                <input type="radio" id="radius25" value="25miles" name="rad">
+                <label for "radius25">25 miles</label>
+              </div><div>
+                <input type="radio" id="radius50" value="50miles" name="rad">
+                <label for "radius50">50 miles</label>
+              </div><div>
+                <input type="radio" id="radius100" value="100miles" name="rad">
+                <label for "radius100">100 miles</label>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset id="category-fieldset" role="group">
+            <legend>Categories</legend>
+            <div class="categories">
+              <div>
+                <input type="checkbox" id="js-cat-all" value="All Meetups" name="cat">
+                <label for="js-cat-all">All Meetups</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-arts" value="Arts" name="cat">
+                <label for="js-cat-arts">Arts</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-beliefs" value="Beliefs" name="cat">
+                <label for="js-cat-beliefs">Beliefs</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-book" value="Book Clubs" name="cat">
+                <label for="js-cat-book">Book Clubs</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-career" value="Career & Business" name="cat">
+                <label for="js-cat-career">Career & Business</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-dance" value="Dance" name="cat">
+                <label for="js-cat-dance">Dance</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-family" value="Family" name="cat">
+                <label for="js-cat-family">Family</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-fashion" value="Fashion & Beauty" name="cat">
+                <label for="js-cat-fashion">Fashion & Beauty</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-film" value="Film" name="cat">
+                <label for="js-cat-film">Film</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-food" value="Food & Drinks" name="cat">
+                <label for="js-cat-food">Food & Drinks</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-health" value="Health & Wellness" name="cat">
+                <label for="js-cat-health">Health & Wellness</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-hobbies" value="Hobbies & Crafts" name="cat">
+                <label for="js-cat-hobbies">Hobbies & Crafts</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-lgbtq" value="LGBTQ" name="cat">
+                <label for="js-cat-lgbtq">LGBTQ</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-language" value="Language & Culture" name="cat">
+                <label for="js-cat-language">Language & Culture</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-learning" value="Learning" name="cat">
+                <label for="js-cat-learning">Learning</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-movements" value="Movements" name="cat">
+                <label for="js-cat-movements">Movements</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-music" value="Music" name="cat">
+                <label for="js-cat-music">Music</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-outdoors" value="Outdoors & Adventure" name="cat">
+                <label for="js-cat-outdoors">Outdoors & Adventure</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-pets" value="Pets" name="cat">
+                <label for="js-cat-pets">Pets</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-photography" value="Photography" name="cat">
+                <label for="js-cat-photography">Photography</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-scifi" value="Sci-Fi & Games" name="cat">
+                <label for="js-cat-scifi">Sci-Fi & Games</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-social" value="Social" name="cat">
+                <label for="js-cat-social">Social</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-sports" value="Sports & Fitness" name="cat">
+                <label for="js-cat-sports">Sports & Fitness</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-tech" value="Tech" name="cat">
+                <label for="js-cat-tech">Tech</label>
+              </div>
+              <div>
+                <input type="checkbox" id="js-cat-writing" value="Writing" name="cat">
+                <label for="js-cat-writing">Writing</label>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset id="keyword-fieldset">
+            <legend>Keyword(s)</legend>
+            <div class="keyword">
+              <label for="js-keyword">Enter Keyword(s)</label>
+              <input type="textbox" id="js-keyword" value="" name="key">
+            </div>
+          </fieldset>
+          <!-- <fieldset id="date-fieldset" role="group">
+            <legend>Date Range</legend>
+            <div class="date-range">
+              <button class="dropbtn">Date Range</button>
+              <div id="date-range-dropdown" class="dropdown-content"
+                <ul class="dropdown-date-range">
+                  <li>Today</li>
+                  <li>Next three days</li>
+                  <li>This week</li>
+                  <li>Next week</li>
+                  <li>This month</li>
+                </ul>
+              </div>
+            </div>
+          </fieldset> -->
+          <fieldset id="date-fieldset" role="radiogroup">
+            <legend>Date Range</legend>
+            <div class="date-range">
+              <div>
+                <input type="radio" id="dates-today" value="Today" name="dates">
+                <label for "dates-today">Today</label>
+              </div>
+              <div>
+                <input type="radio" id="dates-tomorrow" value="Tomorrow" name="dates">
+                <label for "dates-tomorrow">Tomorrow</label>
+              </div>
+              <div>
+                <input type="radio" id="dates-thisweek" value="Thisweek" name="dates">
+                <label for "dates-thisweek">This week</label>
+              </div>
+              <div>
+                <input type="radio" id="dates-nextweek" value="Nextweek" name="dates">
+                <label for "dates-nextweek">Next week</label>
+              </div>
+              <div>
+                <input type="radio" id="dates-thismonth" value="Thismonth" name="dates">
+                <label for "dates-thismonth">This month</label>
+              </div>
+            </div>
+          </fieldset>
+          <!-- <fieldset id="membership-fieldset" role="group">
+            <legend>Membership Status</legend>
+            <div class="membership">
+              <button class="dropbtn">Membership</button>
+              <div id="membership-dropdown" class="dropdown-content"
+                <ul class="dropdown-membership">
+                  <li>All Meetups</li>
+                  <li>My Groups' Meetups</li>
+                </ul>
+              </div>
+            </div>
+          </fieldset> -->
+          <fieldset id="membership-fieldset" role="radiogroup">
+            <legend>Membership Status</legend>
+            <div class="membership">
+              <div>
+                <input type="radio" id="membership-all" value="memAll" name="member">
+                <label for "membership-all">All Meetups</label>
+              </div>
+              <div>
+                <input type="radio" id="membership-mine" value="memMine" name="member">
+                <label for "membership-mine">My Groups' Meetups</label>
+              </div>
+            </div>
+          </fieldset>
+          <button type="submit" id="btn">Search</button>
+        </form>
       </div>
     </main>
     <script src="index.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADa0F4n1AvNW8MzwQvf24XQ6ObeXPss"></script>
-    <footer>Copyright Laura Jodz, 2017</footer>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADa0F4n1AvNW8MzwQvf24XQ6ObeXPss&v=3&callback=initMap"></script>
+    <!-- <footer>Copyright Laura Jodz, 2017</footer> -->
   </body>
 </html>

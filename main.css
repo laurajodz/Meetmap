@@ -2,9 +2,9 @@
   box-sizing: border-box;
 }
 
-body {
+/*body {
   background-color: #FAF0E6;
-}
+}*/
 
 header {
   font-size: 35px;
@@ -19,12 +19,12 @@ header {
   column-count: 3;
 }
 
-.container, .location, .radius {
+.location {
   column-count: 2;
 }
 
 #date-fieldset, #membership-fieldset {
-  width: 48%;
+  /*width: 49%;*/
   display: inline;
   margin-bottom: 10px;
 }

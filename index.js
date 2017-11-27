@@ -1,7 +1,5 @@
-const MEETUP_SEARCH_URL = "https://api.meetup.com/find/upcoming_events/?key=524472e125072465129556564d2f74";
-
-//var map, infoWindow;
 var map;
+
 function initMap() {
   var styles = [
     {
@@ -224,13 +222,12 @@ function initMap() {
     }
   ]
 
-map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.0902, lng: -95.7129},
     zoom: 4,
     styles: styles,
     mapTypeControl: false
   });
-  //infoWindow = new google.maps.InfoWindow;
 
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
@@ -239,159 +236,157 @@ map = new google.maps.Map(document.getElementById('map'), {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-
-      //infoWindow.setPosition(pos);
-      //infoWindow.setContent('Location found.');
-      //infoWindow.open(map);
       map.setCenter(pos);
       map.setZoom(12);
-      // var marker = new google.maps.Marker({
-      //   position: pos,
-      //   map: map,
-      //   title: 'You are here'
-      // });
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
+    })
   }
 }
 
-  // function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  // infoWindow.setPosition(pos);
-  // infoWindow.setContent(browserHasGeolocation ?
-  //   'Error: The Geolocation service failed.' :
-  //   'Error: Your browser doesn\'t support geolocation.');
-  //   infoWindow.open(map);
-  // }
+
+function searchButtonHandler(e){
+
+  //1. get all inputs
+  const city = $('#location-id').val();
+  console.log('City: ', city);
+
+  const radius = $('input[name="rad"]:checked').val();
+  console.log('Radius: ', radius);
+
+  const category = $('input[name="cat"]:checked').val();
+  //const categories = categoriesChecked.map((index, target) => target.value).toArray();
+  console.log('Categories: ', category);
+
+  const key = $('#keyword').val();
+  console.log('Keywords: ', key);
+
+  let fromdate = $('#from').datepicker("getDate");
+  fromdate = $.datepicker.formatDate("yy-mm-ddT00:00:00", fromdate);
+  let todate = $('#to').datepicker("getDate");
+  todate = $.datepicker.formatDate("yy-mm-ddT23:59:59", todate);
+  console.log('Date Range: ', fromdate, todate);
+
+  const membership = $('input[name="member"]:checked').val();
+  console.log('Membership Status: ', membership);
 
 
-
-  function searchButtonHandler(e){
-
-     //1. get all inputs
-     const city = $('#location-id').val();
-     console.log('City:', city);
-
-     const radius = $('input[name="rad"]:checked').val();
-     console.log('Radius:', radius);
-
-     const categoriesChecked = $('input[name="cat"]:checked');
-     const categories = categoriesChecked.map((index, target) => target.value).toArray();
-     console.log('Categories:', categories);
-
-     const key = $('#keyword').val();
-     console.log('Keywords:', key);
-
-     const date = $('input[name="dates"]:checked').val();
-     console.log('Date Range:', date);
-
-     const membership = $('input[name="member"]:checked').val();
-     console.log('Membership Status:', membership);
-
-
-     //2. make the call to meetups
-
-
-      const q = {
-          key: "524472e125072465129556564d2f74",
-          text: key,
-          fields:'group_category',
-          callback:"handlerequest"
-      }
-      $.ajax({
-          url:'https://api.meetup.com/find/upcoming_events',
-          method:'GET',
-          data: q,
-          dataType:"jsonp",
-          crossDomain:true
-      }).done(res => {
-          displayResults(res.data);
-      })
+  //2. make the call to Meetup
+  const q = {
+    key: "524472e125072465129556564d2f74",
+    // city: city,
+    radius: radius,
+    fields: 'group_topics',
+    topic_category: category,
+    text: key,
+    start_date_range: fromdate,
+    end_date_range: todate,
+    self_groups: membership,
+    callback:"handlerequest"
   }
+
+  $.ajax({
+    url:'https://api.meetup.com/find/upcoming_events',
+    method:'GET',
+    data: q,
+    dataType:"jsonp",
+    crossDomain:true
+  }).done(res => {
+    displayResults(res.data);
+  })
+}
 
 
 function displayResults(data){
-    console.log(data);
-    locations = data.events.map(function(ev){
-      return {
-        title: ev.name,
-        location: {
-          lat: ev.group.lat,
-          lng: ev.group.lon
-        },
-        category: ev.group.category.name,
-        url: ev.link
-      }
-    });
-    console.log(locations);
-    showMarkers(locations);
-}
-
-
-  //3. display markers
-function showMarkers(locations) {
-  //$('#btn').click(event => {
-    //event.preventDefault();
-    var markers = [];
-    var largeInfowindow = new google.maps.InfoWindow();
-    //var bounds = new google.maps.LatLngBounds();
-    for (var i = 0; i < locations.length; i++) {
-    // Get the position, title, and url from the location array.
-      var position = locations[i].location;
-      var title = locations[i].title;
-      var url = locations[i].url;
-    // Create a marker per location, and put into markers array.
-      var marker = new google.maps.Marker({
-        map: map,
-        position: position,
-        title: title,
-        url: url,
-        animation: google.maps.Animation.DROP,
-        id: i
-      });
-      //console.log(marker);
-      // Push the marker to our array of markers
-      markers.push(marker);
+  console.log('data:', data);
+  locations = data.events.map(function(ev){
+    return {
+      title: ev.name,
+      location: {
+        lat: ev.group.lat,
+        lng: ev.group.lon
+      },
+      //category: ev.group.category.name,
+      url: ev.link
     }
-  //});
-  openWindow(marker, largeInfowindow);
-}
-
-// Create an onclick event to open an infowindow at each marker.
-function openWindow(marker) {
-  console.log("Line 365");
-  marker.addListener('click', function() {
-    console.log("marker clicked");
-    populateInfoWindow(this, largeInfowindow);
   });
-  //bounds.extend(markers[i].position);
+  console.log('locations:', locations);
+  showMarkers(locations);
 }
 
-    // Extend the boundaries of the map for each marker
-    //map.fitBounds(bounds);
 
-    //This function populates the infowindow when the marker is clicked. We'll only allow
-    //one infowindow which will open at the marker that is clicked, and populate based
-    //on that markers position.
-function populateInfoWindow(marker, infowindow) {
-  // Check to make sure the infowindow is not already opened on this marker.
-  if (infowindow.marker != marker) {
-    infowindow.marker = marker;
-    infowindow.setContent('<div>' + marker.title + '</div>');
-    infowindow.open(map, marker);
-    // Make sure the marker property is cleared if the infowindow is closed.
-    infowindow.addListener('closeclick',function(){
-      infowindow.setMarker = null;
+//3. display markers
+function showMarkers(locations) {
+
+  //var bounds = new google.maps.LatLngBounds();
+  for (var i = 0; i < locations.length; i++) {
+    // Get the position, title, and url from the location array.
+    var position = locations[i].location;
+    var title = locations[i].title;
+    var url = locations[i].url;
+
+    // Create a marker per location
+    var marker = new google.maps.Marker({
+      map: map,
+      position: position,
+      title: title,
+      url: url,
+      animation: google.maps.Animation.DROP,
+      id: i
+    });
+
+    //Create an onclick event to open an infowindow at each marker and
+    //populate the infowindow when the marker is clicked. We'll only allow
+    //one infowindow which will open at the marker that is clicked, and
+    //populate based on that markers position.
+    marker.addListener('click', function() {
+      // Check to make sure the infowindow is not already opened on this marker.
+      var infowindow = new google.maps.InfoWindow();
+      if (infowindow.marker != marker) {
+        infowindow.marker = marker;
+        //infowindow.setContent('<div>' + marker.title + '</div>');
+        infowindow.setContent('<div><a href=' + marker.url + '</a>' + marker.title + '</div>');
+        infowindow.open(map, marker);
+        // Make sure the marker property is cleared if the infowindow is closed.
+        infowindow.addListener('closeclick',function(){
+          infowindow.setMarker = null;
+        });
+      }
     });
   }
 }
 
+  //bounds.extend(markers[i].position);
+    // Extend the boundaries of the map for each marker
+    //map.fitBounds(bounds);
+
+function getCategories() {
+  $.ajax({
+    url:'https://api.meetup.com/find/topic_categories',
+    method:'GET',
+    dataType:"jsonp",
+    crossDomain:true
+  }).done(res => {
+    console.log(res);
+    displayCategories(res.data);
+  })
+}
+
+function displayCategories(data) {
+  console.log(data);
+  const results = data.map((index) => renderResult(index));
+  $('.categories').html(results);
+}
+
+function renderResult(result) {
+  return `<div>
+    <input type="radio" id=${result.id} value=${result.id} name="cat">
+    <label for=${result.id}>${result.name}</label>
+  </div>`;
+}
 
 $(function(){
   //runs once when the page loads
+  initMap();
+  getCategories();
   // where you set all your event handlers
 
     // event handler for the Button
@@ -402,9 +397,42 @@ $(function(){
        console.log($(this).val());
     });
 
+    //event handler for the dates
+    var dateFormat = "yy-mm-dd",
+    from = $( "#from" ).datepicker({
+        defaultDate: "+1w",
+        showOtherMonths: true,
+        selectOtherMonths: true
+      })
+      .on( "change", function() {
+        to.datepicker( "option", "minDate", getDate( this ) );
+      }),
+    to = $( "#to" ).datepicker({
+      defaultDate: "+1w",
+      showOtherMonths: true,
+      selectOtherMonths: true
+    })
+    .on( "change", function() {
+      from.datepicker( "option", "maxDate", getDate( this ) );
+    });
+    getDate();
+
+  function getDate( element ) {
+    var date;
+    try {
+      date = $.datepicker.parseDate( dateFormat, element.value );
+    } catch( error ) {
+      date = null;
+    }
+
+    return date;
+    console.log(date);
+  }
+
+
     //form handler
     $('#params').submit(function(e){
       e.preventDefault();
 
     });
-})
+});

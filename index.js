@@ -315,7 +315,7 @@ function displayResults(data){
 
 //3. display markers
 function showMarkers(locations) {
-
+  var infowindow = new google.maps.InfoWindow();
   //var bounds = new google.maps.LatLngBounds();
   for (var i = 0; i < locations.length; i++) {
     // Get the position, title, and url from the location array.
@@ -337,20 +337,13 @@ function showMarkers(locations) {
     //populate the infowindow when the marker is clicked. We'll only allow
     //one infowindow which will open at the marker that is clicked, and
     //populate based on that markers position.
-    marker.addListener('click', function() {
-      // Check to make sure the infowindow is not already opened on this marker.
-      var infowindow = new google.maps.InfoWindow();
-      if (infowindow.marker != marker) {
-        infowindow.marker = marker;
-        //infowindow.setContent('<div>' + marker.title + '</div>');
-        infowindow.setContent('<div><a href=' + marker.url + '</a>' + marker.title + '</div>');
+    google.maps.event.addListener(marker, 'click', (function (marker, i) {
+      return function () {
+        infowindow.setContent('<div><a href=' + locations[i].url + '</a>' +
+        locations[i].title + '</div>');
         infowindow.open(map, marker);
-        // Make sure the marker property is cleared if the infowindow is closed.
-        infowindow.addListener('closeclick',function(){
-          infowindow.setMarker = null;
-        });
       }
-    });
+    })(marker, i));
   }
 }
 

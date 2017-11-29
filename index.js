@@ -1,5 +1,7 @@
 var map;
-
+var markers = [];
+var lat;
+var lon;
 
 function initMap() {
   var styles = [
@@ -147,6 +149,14 @@ function searchButtonHandler(e){
     callback:"handlerequest"
   }
 
+  if (lat) {
+    q.lat = lat
+  }
+
+  if (lon) {
+    q.lon = lon
+  }
+
   $.ajax({
     url:'https://api.meetup.com/find/upcoming_events',
     method:'GET',
@@ -179,10 +189,14 @@ function displayResults(data){
 
 //3. display markers
 function showMarkers(locations) {
+
+  deleteMarkers();
+  
   var pinColor = "E37222";
   var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor);
   var infowindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
+
   for (var i = 0; i < locations.length; i++) {
     // Get the position, title, group, and url from the location array.
     var position = locations[i].location;
@@ -200,6 +214,7 @@ function showMarkers(locations) {
       animation: google.maps.Animation.DROP,
       id: i
     });
+    markers.push(marker);
     console.log(title);
     bounds.extend(marker.position);
     //Create an onclick event to open an infowindow at each marker and
@@ -216,6 +231,13 @@ function showMarkers(locations) {
   }
   // Extend the boundaries of the map
   map.fitBounds(bounds);
+}
+
+function deleteMarkers() {
+  markers.forEach(function(m) {
+    m.setMap(null);
+  })
+  markers = [];
 }
 
 
@@ -278,6 +300,8 @@ function initAutocomplete() {
       }
     });
     map.fitBounds(bounds);
+    lat = (map.getCenter().lat());
+    lon = (map.getCenter().lng());
   });
 }
 

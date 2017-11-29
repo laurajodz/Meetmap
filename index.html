@@ -21,16 +21,6 @@
       <div class="container">
       <div class="params-container">
         <form action="" method="" class="adjust-params" id="params">
-            <!-- <div class="radius">
-              <button class="dropbtn">Radius</button>
-              <div id="radius-dropdown" class="dropdown-content">
-                <p>2 miles</p>
-                <p>5 miles</p>
-                <p>10 miles</p>
-                <p>25 miles</p>
-                <p>50 miles</p>
-                <p>100 miles</p>
-              </div> -->
           <fieldset>
             <legend>Radius</legend>
             <div class="radius">
@@ -69,62 +59,13 @@
               <input type="textbox" id="keyword" value="" name="key">
             </div>
           </fieldset>
-          <!-- <fieldset id="date-fieldset" role="group">
-            <legend>Date Range</legend>
-            <div class="date-range">
-              <button class="dropbtn">Date Range</button>
-              <div id="date-range-dropdown" class="dropdown-content"
-                <ul class="dropdown-date-range">
-                  <li>Today</li>
-                  <li>Next three days</li>
-                  <li>This week</li>
-                  <li>Next week</li>
-                  <li>This month</li>
-                </ul>
-              </div>
-            </div>
-          </fieldset> -->
           <fieldset id="date-fieldset" role="radiogroup">
             <legend>Date Range</legend>
             <label for="from">From</label>
             <input type="text" id="from" name="from"><br/>
             <label for="to">To</label>
             <input type="text" id="to" name="to">
-            <!-- <div class="date-range">
-              <div>
-                <input type="radio" id="dates-today" value="Today" name="dates">
-                <label for "dates-today">Today</label>
-              </div>
-              <div>
-                <input type="radio" id="dates-tomorrow" value="Tomorrow" name="dates">
-                <label for "dates-tomorrow">Tomorrow</label>
-              </div>
-              <div>
-                <input type="radio" id="dates-thisweek" value="Thisweek" name="dates">
-                <label for "dates-thisweek">This week</label>
-              </div>
-              <div>
-                <input type="radio" id="dates-nextweek" value="Nextweek" name="dates">
-                <label for "dates-nextweek">Next week</label>
-              </div>
-              <div>
-                <input type="radio" id="dates-thismonth" value="Thismonth" name="dates">
-                <label for "dates-thismonth">This month</label>
-              </div>
-            </div> -->
           </fieldset>
-          <!-- <fieldset id="membership-fieldset" role="group">
-            <legend>Membership Status</legend>
-            <div class="membership">
-              <button class="dropbtn">Membership</button>
-              <div id="membership-dropdown" class="dropdown-content"
-                <ul class="dropdown-membership">
-                  <li>All Meetups</li>
-                  <li>My Groups' Meetups</li>
-                </ul>
-              </div>
-            </div>
-          </fieldset> -->
           <fieldset id="membership-fieldset" role="radiogroup">
             <legend>Membership Status</legend>
             <div class="membership">
@@ -148,9 +89,52 @@
         </div>
       </div>
       </div>
+
+      <div class="mobileContainer" hidden>
+        <div class="mobileRadius">
+          <button class="dropbtn">Radius</button>
+          <div id="radius-dropdown" class="dropdown-content"
+            <ul class="dropdown-radius">
+              <li>2 miles</li>
+              <li>5 miles</li>
+              <li>10 miles</li>
+              <li>25 miles</li>
+              <li>50 miles</li>
+              <li>100 miles</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mobileCategory">
+
+        </div>
+        <div class="mobileKeyword">
+
+        </div>
+        <div class="mobileDates">
+          <button class="dropbtn">Date Range</button>
+          <div id="date-range-dropdown" class="dropdown-content"
+            <ul class="dropdown-date-range">
+              <li>Today</li>
+              <li>Next three days</li>
+              <li>This week</li>
+              <li>Next week</li>
+              <li>This month</li>
+              <li>Next month</li>
+            </ul>
+          </div>
+        </div>
+        <div class="mobileMembership">
+          <button class="dropbtn">Membership</button>
+          <div id="membership-dropdown" class="dropdown-content"
+            <ul class="dropdown-membership">
+              <li>All Meetups</li>
+              <li>My Groups' Meetups</li>
+            </ul>
+          </div>
+        </div>
     </main>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADa0F4n1AvNW8MzwQvf24XQ6ObeXPss&v=3&libraries=places"></script>
     <script src="index.js"></script>
-    <!-- <footer>Copyright Laura Jodz, 2017</footer> -->
+    <footer>Copyright Laura Jodz, 2017</footer>
   </body>
 </html>

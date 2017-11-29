@@ -11,21 +11,55 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
     <link href="main.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
   </head>
   <body>
-    <header role="banner">MeetMap - Meetups on a Map</header>
+    <header role="banner">Meetmap</header>
+      <h1>Your Meetups on a Map</h1>
     <main role="main">
       <div class="container">
-        <div id="map">
-        </div>
+      <div class="params-container">
         <form action="" method="" class="adjust-params" id="params">
           <fieldset id="location-fieldset" role="group">
             <legend>Location</legend>
-            <div class="location">
-              <div>
-                <label for="location-id">Change Zip Code or City</label>
-                <input type="text" id="location-id" value="" name="loc">
-              </div>
+            <div id="locationField">
+              <input id="autocomplete" placeholder="Enter your address"
+             onFocus="geolocate()" type="text"></input>
+           </div>
+
+    <!-- <table id="address">
+      <tr>
+        <td class="label">Street address</td>
+        <td class="slimField"><input class="field" id="street_number"
+              disabled="true"></input></td>
+        <td class="wideField" colspan="2"><input class="field" id="route"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">City</td>
+        <!-- Note: Selection of address components in this example is typical.
+             You may need to adjust it for the locations relevant to your app. See
+             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+        -->
+        <!-- <td class="wideField" colspan="3"><input class="field" id="locality"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">State</td>
+        <td class="slimField"><input class="field"
+              id="administrative_area_level_1" disabled="true"></input></td>
+        <td class="label">Zip code</td>
+        <td class="wideField"><input class="field" id="postal_code"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">Country</td>
+        <td class="wideField" colspan="3"><input class="field"
+              id="country" disabled="true"></input></td>
+      </tr>
+    </table> -->
+
+          </fieldset>
             <!-- <div class="radius">
               <button class="dropbtn">Radius</button>
               <div id="radius-dropdown" class="dropdown-content">
@@ -36,41 +70,41 @@
                 <p>50 miles</p>
                 <p>100 miles</p>
               </div> -->
-              <div class="radius">
-                <p>Radius:</p>
-                <div>
-                  <input type="radio" id="radius2" value="2" name="rad">
-                  <label for "radius2">2 miles</label>
-                </div>
-                <div>
-                  <input type="radio" id="radius5" value="5" name="rad">
-                  <label for "radius5">5 miles</label>
-                </div><div>
-                  <input type="radio" id="radius10" value="10" name="rad">
-                  <label for "radius10">10 miles</label>
-                </div><div>
-                  <input type="radio" id="radius25" value="25" name="rad">
-                  <label for "radius25">25 miles</label>
-                </div><div>
-                  <input type="radio" id="radius50" value="50" name="rad">
-                  <label for "radius50">50 miles</label>
-                </div><div>
-                  <input type="radio" id="radius100" value="100" name="rad">
-                  <label for "radius100">100 miles</label>
-                </div>
+          <fieldset>
+            <legend>Radius</legend>
+            <div class="radius">
+              <div>
+                <input type="radio" id="radius2" value="2" name="rad">
+                <label for "radius2">2 miles</label>
+              </div>
+              <div>
+                <input type="radio" id="radius5" value="5" name="rad">
+                <label for "radius5">5 miles</label>
+              </div><div>
+                <input type="radio" id="radius10" value="10" name="rad">
+                <label for "radius10">10 miles</label>
+              </div><div>
+                <input type="radio" id="radius25" value="25" name="rad">
+                <label for "radius25">25 miles</label>
+              </div><div>
+                <input type="radio" id="radius50" value="50" name="rad">
+                <label for "radius50">50 miles</label>
+              </div><div>
+                <input type="radio" id="radius100" value="100" name="rad">
+                <label for "radius100">100 miles</label>
               </div>
             </div>
           </fieldset>
           <fieldset id="category-fieldset" role="group">
-            <legend>Categories</legend>
+            <legend>Category</legend>
             <div class="categories">
 
             </div>
           </fieldset>
           <fieldset id="keyword-fieldset">
-            <legend>Keyword(s)</legend>
+            <legend>Keyword</legend>
             <div>
-              <label for="keyword">Enter Keyword(s)</label>
+              <label for="keyword">Enter Keyword</label>
               <input type="textbox" id="keyword" value="" name="key">
             </div>
           </fieldset>
@@ -92,8 +126,8 @@
           <fieldset id="date-fieldset" role="radiogroup">
             <legend>Date Range</legend>
             <label for="from">From</label>
-            <input type="text" id="from" name="from">
-            <label for="to">to</label>
+            <input type="text" id="from" name="from"><br/>
+            <label for="to">To</label>
             <input type="text" id="to" name="to">
             <!-- <div class="date-range">
               <div>
@@ -143,11 +177,18 @@
               </div>
             </div>
           </fieldset>
+          <div class="button">
           <button type="submit" id="btn">Search</button>
+          </div>
         </form>
       </div>
+      <div class="map-container">
+        <div id="map">
+        </div>
+      </div>
+      </div>
     </main>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADa0F4n1AvNW8MzwQvf24XQ6ObeXPss&v=3"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADa0F4n1AvNW8MzwQvf24XQ6ObeXPss&v=3&libraries=places"></script>
     <script src="index.js"></script>
     <!-- <footer>Copyright Laura Jodz, 2017</footer> -->
   </body>

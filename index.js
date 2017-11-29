@@ -1,226 +1,87 @@
 var map;
 
+
 function initMap() {
   var styles = [
     {
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#f5f5f5"
-        }
-      ]
+        "featureType": "administrative",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#444444" //gray
+            }
+        ]
     },
     {
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#f2f2f2" //light gray
+            }
+        ]
     },
     {
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#616161"
-        }
-      ]
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
     },
     {
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-          "color": "#f5f5f5"
-        }
-      ]
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 45
+            }
+        ]
     },
     {
-      "featureType": "administrative",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
     },
     {
-      "featureType": "administrative.land_parcel",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#bdbdbd"
-        }
-      ]
+        "featureType": "road.arterial",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
     },
     {
-      "featureType": "poi",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
     },
     {
-      "featureType": "poi",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#eeeeee"
-        }
-      ]
-    },
-    {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#757575"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#e5e5e5"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9e9e9e"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#ffffff"
-        }
-      ]
-    },
-    {
-      "featureType": "road",
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "road.arterial",
-      "elementType": "labels",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "road.arterial",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#757575"
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#dadada"
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "labels",
-      "stylers": [
-        {
-          "visibility": "on"
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#616161"
-        }
-      ]
-    },
-    {
-      "featureType": "road.local",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "road.local",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9e9e9e"
-        }
-      ]
-    },
-    {
-      "featureType": "transit",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "transit.line",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#e5e5e5"
-        }
-      ]
-    },
-    {
-      "featureType": "transit.station",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#eeeeee"
-        }
-      ]
-    },
-    {
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "color": "#c9c9c9"
-        }
-      ]
-    },
-    {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#9e9e9e"
-        }
-      ]
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#07889B"  //blue
+            },
+            {
+                "visibility": "on"
+            }
+        ]
     }
-  ]
+]
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.0902, lng: -95.7129},
@@ -236,6 +97,11 @@ function initMap() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
+      // var circle = new google.maps.Circle({
+      //         center: geolocation,
+      //         radius: position.coords.accuracy
+      //       });
+      //       autocomplete.setBounds(circle.getBounds());
       map.setCenter(pos);
       map.setZoom(13);
     })
@@ -245,10 +111,9 @@ function initMap() {
 
 function searchButtonHandler(e){
 
-  //1. get all inputs
-  const city = $('#location-id').val();
-  console.log('City: ', city);
+  //0. clear any existing markers from a previous search
 
+  //1. get all inputs
   const radius = $('input[name="rad"]:checked').val();
   console.log('Radius: ', radius);
 
@@ -272,7 +137,6 @@ function searchButtonHandler(e){
   //2. make the call to Meetup
   const q = {
     key: "524472e125072465129556564d2f74",
-    // city: city,
     radius: radius,
     fields: 'group_topics',
     topic_category: category,
@@ -315,8 +179,10 @@ function displayResults(data){
 
 //3. display markers
 function showMarkers(locations) {
+  var pinColor = "E37222";
+  var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor);
   var infowindow = new google.maps.InfoWindow();
-  //var bounds = new google.maps.LatLngBounds();
+  var bounds = new google.maps.LatLngBounds();
   for (var i = 0; i < locations.length; i++) {
     // Get the position, title, group, and url from the location array.
     var position = locations[i].location;
@@ -330,10 +196,12 @@ function showMarkers(locations) {
       title: title,
       group: group,
       url: url,
+      icon: pinImage,
       animation: google.maps.Animation.DROP,
       id: i
     });
     console.log(title);
+    bounds.extend(marker.position);
     //Create an onclick event to open an infowindow at each marker and
     //populate the infowindow when the marker is clicked. We'll only allow
     //one infowindow which will open at the marker that is clicked, and
@@ -346,11 +214,10 @@ function showMarkers(locations) {
       }
     })(marker, i));
   }
+  // Extend the boundaries of the map
+  map.fitBounds(bounds);
 }
 
-  //bounds.extend(markers[i].position);
-    // Extend the boundaries of the map for each marker
-    //map.fitBounds(bounds);
 
 function getCategories() {
   $.ajax({
@@ -375,13 +242,58 @@ function renderResult(result) {
   </div>`;
 }
 
+
+//location handler
+var placeSearch, autocomplete;
+      var componentForm = {
+        // street_number: 'short_name',
+        // route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+      }
+      function fillInAddress() {
+              // Get the place details from the autocomplete object.
+              var place = autocomplete.getPlace();
+
+              for (var component in componentForm) {
+                document.getElementById(component).value = '';
+                document.getElementById(component).disabled = false;
+              }
+
+              // Get each component of the address from the place details
+              // and fill the corresponding field on the form.
+              for (var i = 0; i < place.address_components.length; i++) {
+                var addressType = place.address_components[i].types[0];
+                if (componentForm[addressType]) {
+                  var val = place.address_components[i][componentForm[addressType]];
+                  document.getElementById(addressType).value = val;
+                }
+              }
+            }
+
+
+
+
+
 $(function(){
   //runs once when the page loads
   initMap();
   getCategories();
-
-  //clear any existing markers from previous search
-
+  initAutocomplete();
 
   // where you set all your event handlers
 
@@ -396,6 +308,7 @@ $(function(){
   //event handler for the dates
   var dateFormat = "yy-mm-dd",
   from = $( "#from" ).datepicker({
+      minDate: 0,
       defaultDate: new Date(),
       showOtherMonths: true,
       selectOtherMonths: true
@@ -404,6 +317,7 @@ $(function(){
     to.datepicker( "option", "minDate", getDate( this ) );
     }),
   to = $( "#to" ).datepicker({
+      minDate: 0,
       defaultDate: 7,
       showOtherMonths: true,
       selectOtherMonths: true
@@ -423,8 +337,6 @@ $(function(){
     } catch( error ) {
       date = null;
     }
-
     return date;
   }
-
 });

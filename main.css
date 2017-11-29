@@ -2,38 +2,37 @@
   box-sizing: border-box;
 }
 
-/*body {
+body {
   background-color: #FAF0E6;
-}*/
+}
 
 header {
   font-size: 35px;
 }
 
 #map {
-  height: 610px;
+  height: 600px;
   width: 100%;
 }
 
-.categories {
+/*.categories {
   column-count: 3;
 }
 
 .location {
   column-count: 2;
-}
+}*/
 
 #date-fieldset, #membership-fieldset {
   /*width: 49%;*/
-  display: inline;
-  margin-bottom: 10px;
+  /*display: inline;*/
 }
 
 
 /* Dropdown Button and Search Button*/
 .dropbtn, #btn {
-    background-color: #4CAF50;
-    color: white;
+    margin-top: 10px;
+    background-color: #006400;
     padding: 16px;
     font-size: 16px;
     border: none;

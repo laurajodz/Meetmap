@@ -237,7 +237,7 @@ function initMap() {
         lng: position.coords.longitude
       };
       map.setCenter(pos);
-      map.setZoom(12);
+      map.setZoom(13);
     })
   }
 }
@@ -300,11 +300,11 @@ function displayResults(data){
   locations = data.events.map(function(ev){
     return {
       title: ev.name,
+      group: ev.group.name,
       location: {
         lat: ev.group.lat,
         lng: ev.group.lon
       },
-      //category: ev.group.category.name,
       url: ev.link
     }
   });
@@ -318,29 +318,30 @@ function showMarkers(locations) {
   var infowindow = new google.maps.InfoWindow();
   //var bounds = new google.maps.LatLngBounds();
   for (var i = 0; i < locations.length; i++) {
-    // Get the position, title, and url from the location array.
+    // Get the position, title, group, and url from the location array.
     var position = locations[i].location;
     var title = locations[i].title;
+    var group = locations[i].group;
     var url = locations[i].url;
-
     // Create a marker per location
     var marker = new google.maps.Marker({
       map: map,
       position: position,
       title: title,
+      group: group,
       url: url,
       animation: google.maps.Animation.DROP,
       id: i
     });
-
+    console.log(title);
     //Create an onclick event to open an infowindow at each marker and
     //populate the infowindow when the marker is clicked. We'll only allow
     //one infowindow which will open at the marker that is clicked, and
     //populate based on that markers position.
     google.maps.event.addListener(marker, 'click', (function (marker, i) {
       return function () {
-        infowindow.setContent('<div><a href=' + locations[i].url + '</a>' +
-        locations[i].title + '</div>');
+        infowindow.setContent('<a href="' + locations[i].url + '" target="_blank">'
+        + locations[i].title + '</a><p>' + locations[i].group + '</p>');
         infowindow.open(map, marker);
       }
     })(marker, i));
@@ -358,13 +359,11 @@ function getCategories() {
     dataType:"jsonp",
     crossDomain:true
   }).done(res => {
-    console.log(res);
     displayCategories(res.data);
   })
 }
 
 function displayCategories(data) {
-  console.log(data);
   const results = data.map((index) => renderResult(index));
   $('.categories').html(results);
 }
@@ -380,35 +379,42 @@ $(function(){
   //runs once when the page loads
   initMap();
   getCategories();
+
+  //clear any existing markers from previous search
+
+
   // where you set all your event handlers
 
-    // event handler for the Button
-    $('#btn').click(searchButtonHandler);
+  //form handler
+  $('#params').submit(function(e){
+    e.preventDefault();
+  });
 
-    //event handler for the location box
-    $('#location-id').keyup(function(e){
-       console.log($(this).val());
-    });
+  // event handler for the Button
+  $('#btn').click(searchButtonHandler);
 
-    //event handler for the dates
-    var dateFormat = "yy-mm-dd",
-    from = $( "#from" ).datepicker({
-        defaultDate: "+1w",
-        showOtherMonths: true,
-        selectOtherMonths: true
-      })
-      .on( "change", function() {
-        to.datepicker( "option", "minDate", getDate( this ) );
-      }),
-    to = $( "#to" ).datepicker({
-      defaultDate: "+1w",
+  //event handler for the dates
+  var dateFormat = "yy-mm-dd",
+  from = $( "#from" ).datepicker({
+      defaultDate: new Date(),
       showOtherMonths: true,
       selectOtherMonths: true
     })
     .on( "change", function() {
-      from.datepicker( "option", "maxDate", getDate( this ) );
+    to.datepicker( "option", "minDate", getDate( this ) );
+    }),
+  to = $( "#to" ).datepicker({
+      defaultDate: 7,
+      showOtherMonths: true,
+      selectOtherMonths: true
+    })
+    .on( "change", function() {
+    from.datepicker( "option", "maxDate", getDate( this ) );
     });
-    getDate();
+  getDate();
+
+  $( "#from" ).datepicker( "setDate", +1);
+  $( "#to" ).datepicker( "setDate", "+1w");
 
   function getDate( element ) {
     var date;
@@ -419,13 +425,6 @@ $(function(){
     }
 
     return date;
-    console.log(date);
   }
 
-
-    //form handler
-    $('#params').submit(function(e){
-      e.preventDefault();
-
-    });
 });

@@ -34,11 +34,11 @@ body {
 
 .params-container {
   background: #66b9bf;
-  width: 25%;
+  width: 0%;
 }
 
 .map-container {
-  width: 75%;
+  width: 100%;
 }
 
 #map {
@@ -166,3 +166,98 @@ footer {
 .dropdown a:hover {background-color: #f1f1f1}
 
 .show {display:block;}*/
+
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  height: auto;
+  background-color: #66b9bf;
+}
+
+/* Links inside the navbar */
+/*.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}*/
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  padding: 14px 16px;
+  background: #e37222;
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #07889b;
+}
+
+.dropbtn {
+  border: solid 1px #e37222;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #66b9bf;
+  width: 100%;
+  left: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  opacity: .9;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  height: 100%;
+}
+
+/* Style links inside the columns */
+/*.column a {
+  float: none;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}*/
+
+/* Add a background color on hover */
+/*.column a:hover {
+  background-color: #ddd;
+}*/
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media (max-width: 850px) {
+  .column {
+    width: 100%;
+    height: auto;
+  }
+}

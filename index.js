@@ -92,18 +92,12 @@ function initMap() {
     mapTypeControl: false
   });
 
-  // Try HTML5 geolocation.
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      // var circle = new google.maps.Circle({
-      //         center: geolocation,
-      //         radius: position.coords.accuracy
-      //       });
-      //       autocomplete.setBounds(circle.getBounds());
       map.setCenter(pos);
       map.setZoom(13);
     })
@@ -113,28 +107,15 @@ function initMap() {
 
 function searchButtonHandler(e){
 
-  //0. clear any existing markers from a previous search
-
   //1. get all inputs
   const radius = $('input[name="rad"]:checked').val();
-  console.log('Radius: ', radius);
-
   const category = $('input[name="cat"]:checked').val();
-  //const categories = categoriesChecked.map((index, target) => target.value).toArray();
-  console.log('Categories: ', category);
-
   const key = $('#keyword').val();
-  console.log('Keywords: ', key);
-
   let fromdate = $('#from').datepicker("getDate");
   fromdate = $.datepicker.formatDate("yy-mm-ddT00:00:00", fromdate);
   let todate = $('#to').datepicker("getDate");
   todate = $.datepicker.formatDate("yy-mm-ddT23:59:59", todate);
-  console.log('Date Range: ', fromdate, todate);
-
   const membership = $('input[name="member"]:checked').val();
-  console.log('Membership Status: ', membership);
-
 
   //2. make the call to Meetup
   const q = {
@@ -170,7 +151,6 @@ function searchButtonHandler(e){
 
 
 function displayResults(data){
-  console.log('data:', data);
   locations = data.events.map(function(ev){
     return {
       title: ev.name,
@@ -182,7 +162,6 @@ function displayResults(data){
       url: ev.link
     }
   });
-  console.log('locations:', locations);
   showMarkers(locations);
 }
 
@@ -191,9 +170,11 @@ function displayResults(data){
 function showMarkers(locations) {
 
   deleteMarkers();
-  
+
   var pinColor = "E37222";
-  var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor);
+  var pinImage = new google.maps.MarkerImage
+  ("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" +
+  pinColor);
   var infowindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
 
@@ -215,7 +196,6 @@ function showMarkers(locations) {
       id: i
     });
     markers.push(marker);
-    console.log(title);
     bounds.extend(marker.position);
     //Create an onclick event to open an infowindow at each marker and
     //populate the infowindow when the marker is clicked. We'll only allow
@@ -259,7 +239,7 @@ function displayCategories(data) {
 
 function renderResult(result) {
   return `<div>
-    <input type="radio" id=${result.id} value=${result.id} name="cat">
+    <input type="radio" id=${result.id} value=${result.name} name="cat">
     <label for=${result.id}>${result.name}</label>
   </div>`;
 }
@@ -306,6 +286,16 @@ function initAutocomplete() {
 }
 
 
+//added
+// function openNav() {
+//   document.getElementById("mySidenav").style.width = "250px";
+// }
+//
+// function closeNav() {
+//   document.getElementById("mySidenav").style.width = "0";
+// }
+
+
 $(function(){
   //runs once when the page loads
   initMap();
@@ -318,6 +308,9 @@ $(function(){
   $('#params').submit(function(e){
     e.preventDefault();
   });
+
+  //added: event handler for the sidenav
+
 
   // event handler for the Button
   $('#btn').click(searchButtonHandler);
@@ -344,7 +337,7 @@ $(function(){
     });
   getDate();
 
-  $( "#from" ).datepicker( "setDate", +1);
+  $( "#from" ).datepicker( "setDate", new Date());
   $( "#to" ).datepicker( "setDate", "+1w");
 
   function getDate( element ) {

@@ -11,16 +11,38 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
     <link href="main.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
   </head>
   <body>
     <header role="banner">Meetmap</header>
-      <h1>Your Meetups on a Map</h1>
+      <h1>See Meetup events...on a map</h1>
     <main role="main">
-      <input id="pac-input" class="controls" type="text" placeholder="Location">
+      <!-- <span style="font-size:30px;cursor:pointer" onclick="openNav()">Select events</span>       -->
+      <input id="pac-input" class="controls" type="text" placeholder="Type location">
       <div class="container">
       <div class="params-container">
+        <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
         <form action="" method="" class="adjust-params" id="params">
+          <fieldset id="date-fieldset" role="radiogroup">
+            <legend>Date Range</legend>
+            <label for="from">From</label>
+            <input type="text" id="from" name="from"><br/>
+            <label for="to">To</label>
+            <input type="text" id="to" name="to">
+          </fieldset>
+          <fieldset id="keyword-fieldset">
+            <legend>Keyword</legend>
+            <div>
+              <label for="keyword">Enter a Keyword</label>
+              <input type="textbox" id="keyword" value="" name="key">
+            </div>
+          </fieldset>
+          <fieldset id="category-fieldset" role="group">
+            <legend>Category</legend>
+            <div class="categories">
+
+            </div>
+          </fieldset>
           <fieldset>
             <legend>Radius</legend>
             <div class="radius">
@@ -46,28 +68,14 @@
               </div>
             </div>
           </fieldset>
-          <fieldset id="category-fieldset" role="group">
-            <legend>Category</legend>
-            <div class="categories">
-
-            </div>
-          </fieldset>
-          <fieldset id="keyword-fieldset">
-            <legend>Keyword</legend>
-            <div>
-              <label for="keyword">Enter Keyword</label>
-              <input type="textbox" id="keyword" value="" name="key">
-            </div>
-          </fieldset>
-          <fieldset id="date-fieldset" role="radiogroup">
-            <legend>Date Range</legend>
-            <label for="from">From</label>
-            <input type="text" id="from" name="from"><br/>
-            <label for="to">To</label>
-            <input type="text" id="to" name="to">
-          </fieldset>
           <fieldset id="membership-fieldset" role="radiogroup">
             <legend>Membership Status</legend>
+              <!-- <div class="segmented-control" style="width: 100%; color: #07889b">
+                <input type="radio" name="member" id="membership-all" checked>
+                <input type="radio" name="member" id="membership-mine">
+                <label for="membership-all" data-value="include">All Meetups</label>
+                <label for="membership-mine" data-value="only">My Groups' Meetups</label>
+              </div> -->
             <div class="membership">
               <div>
                 <input type="radio" id="membership-all" value="include" name="member">
@@ -80,7 +88,7 @@
             </div>
           </fieldset>
           <div class="button">
-          <button type="submit" id="btn">Search</button>
+          <button type="submit" id="btn">Apply</button>
           </div>
         </form>
       </div>
@@ -90,10 +98,10 @@
       </div>
       </div>
 
-      <div class="mobileContainer" hidden>
+      <!-- <div class="mobileContainer" hidden>
         <div class="mobileRadius">
-          <button class="dropbtn">Radius</button>
-          <div id="radius-dropdown" class="dropdown-content"
+        <button onclick="toggleDropdown()" class="dropbtn">Radius</button>
+          <div id="radiusDropdown" class="dropdownRadiusContent"
             <ul class="dropdown-radius">
               <li>2 miles</li>
               <li>5 miles</li>
@@ -131,7 +139,7 @@
               <li>My Groups' Meetups</li>
             </ul>
           </div>
-        </div>
+        </div> -->
     </main>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADa0F4n1AvNW8MzwQvf24XQ6ObeXPss&v=3&libraries=places"></script>
     <script src="index.js"></script>

@@ -15,35 +15,41 @@
   </head>
   <body>
     <header role="banner">Meetmap</header>
-      <h1>See Meetup events...on a map</h1>
+      <h1>We make it easy to see Meetup events on a map</h1>
+      <h2>Have you ever wanted to see multiple Meetup events on a map?</h2>
+      <div class="button">
+        <button type="submit" id="startbtn">Get started</button>
+      </div>
     <main role="main">
-
       <div class="navbar">
         <div class="dropdown">
           <button class="dropbtn">Search for events
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
+            <div class="closebtn">&times;</div>
             <div class="row">
-              <div class="column">
+              <div class="column1">
                 <h3>Date</h3>
                   <label for="from">From</label>
                   <input type="text" id="from" name="from"><br/>
                   <label for="to">To</label>
                   <input type="text" id="to" name="to">
               </div>
-              <div class="column">
+              <div class="column2">
                 <h3>Keyword</h3>
                   <label for="keyword">Enter a keyword</label>
                   <input type="textbox" id="keyword" value="" name="key">
               </div>
-              <div class="column">
+              <div class="column3">
                 <h3>Category</h3>
                   <div class="categories">
 
                   </div>
               </div>
-              <div class="column">
+            </div>
+            <div class="row">
+              <div class="column4">
                 <h3>Radius</h3>
                   <div class="radius">
                     <div>
@@ -68,7 +74,7 @@
                     </div>
                   </div>
               </div>
-              <div class="column">
+              <div class="column5">
                 <h3>Membership</h3>
                   <div>
                     <input type="radio" id="membership-all" value="include" name="member">
@@ -79,10 +85,10 @@
                     <label for "membership-mine">My groups' Meetups</label>
                   </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="button">
-                <button type="submit" id="btn">Apply</button>
+              <div class="column6">
+                <div class="button">
+                  <button type="submit" id="btn">Apply</button>
+                </div>
               </div>
             </div>
           </div>

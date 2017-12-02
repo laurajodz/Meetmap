@@ -107,6 +107,9 @@ function initMap() {
 
 function searchButtonHandler(e){
 
+  //0. close dropdown
+  $('.dropdown-content').hide('slow');
+
   //1. get all inputs
   const radius = $('input[name="rad"]:checked').val();
   const category = $('input[name="cat"]:checked').val();
@@ -303,6 +306,17 @@ $(function(){
   initAutocomplete();
 
   // where you set all your event handlers
+
+  //drop down content handler
+  $('.dropbtn').on('click', event => {
+    $('.dropdown-content').show('slow');
+  });
+
+  $('.closebtn').on('click', event => {
+    $('.dropdown-content').hide('slow');
+  });
+
+
 
   //form handler
   $('#params').submit(function(e){

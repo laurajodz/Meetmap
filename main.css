@@ -110,6 +110,12 @@ footer {
   background-color: #07889b;
 }
 
+
+#clearbtn {
+  background-color: white;
+  border: 1px solid white;
+}
+
 .closebtn {
   display: none;
   font-size: 48px;

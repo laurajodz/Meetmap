@@ -15,32 +15,29 @@
   </head>
   <body>
     <header role="banner" class="header">Meetmap</header>
-    <!-- <h1>See Meetup events on a map</h1> -->
-    <h2>Meetups let you get together with real people in real life to learn,
-    create and grow. <br/>But how do you locate these meetings?<br/>
-    <span class="help">Meetmap is here to help.</span></h2>
-    <p>Simply choose your events based on criteria such as category, keyword,
-    and date, and Meetmap shows your events on a map.
+    <h1>Finding Meetups is now even easier. See the locations on a map!
+    <span class="help">We make it easy to find a Meetup near you.</span></h1>
+    <h2>Simply select your criteria such as category, keyword, and date, and Meetmap
+    shows your events on the map.<br/>
     Interested in French language Meetups happening this week,
-    in a five-mile radius of your home? Meetmap can show you.</p>
-    <p>Let's get started finding your next event.</p>
+    in a five-mile radius of your home?<br/> Meetmap can show you.<br/>
+    Let's get started finding your next event!</h2>
     <div class="button">
-      <button type="submit" id="startbtn">Get started</button>
+      <button type="submit" id="startbtn">Start</button>
     </div>
     <main role="main" aria-live="assertive" class="main">
       <div class="navbar">
         <div class="dropdown">
-          <button class="dropbtn">Search for events
-            <i class="fa fa-caret-down"></i>
-          </button>
+          <button class="dropbtn">Search here</button>
+          <button class="noresults" hidden>Sorry, no results. Try again.</button>
           <div class="closebtn">&times;</div>
           <div class="dropdown-content">
             <div class="row">
               <div class="column1">
                 <h3>Date</h3>
-                  <label for="from">From</label>
+                  <label for="from">From</label><br/>
                   <input type="text" id="from" name="from"><br/>
-                  <label for="to">To</label>
+                  <label for="to">To</label><br/>
                   <input type="text" id="to" name="to">
               </div>
               <div class="column2">
@@ -88,7 +85,7 @@
                     <label for="membership-all">All Meetups</label>
                   </div>
                   <div>
-                    <input type="radio" id="membership-mine" value="only" name="member" checked>
+                    <input type="radio" id="membership-mine" value="only" name="member">
                     <label for="membership-mine">My groups' Meetups</label>
                   </div>
               </div>
@@ -101,131 +98,9 @@
           </div>
         </div>
       </div>
-
-
-      <!-- <span style="font-size:30px;cursor:pointer" onclick="openNav()">Select events</span>       -->
-      <input id="pac-input" class="controls" type="text" placeholder="New location, (ex New York)">
-      <div class="container">
-      <div class="params-container">
-        <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a> -->
-        <form action="" method="" class="adjust-params" id="params">
-          <fieldset id="date-fieldset" role="radiogroup">
-            <legend>Date Range</legend>
-            <label for="from">From</label>
-            <input type="text" id="from" name="from"><br/>
-            <label for="to">To</label>
-            <input type="text" id="to" name="to">
-          </fieldset>
-          <fieldset id="keyword-fieldset">
-            <legend>Keyword</legend>
-            <div>
-              <label for="keyword">Enter a keyword</label>
-              <input type="textbox" id="keyword" value="" name="key">
-            </div>
-          </fieldset>
-          <fieldset id="category-fieldset" role="group">
-            <legend>Category</legend>
-            <div class="categories">
-
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Radius</legend>
-            <div class="radius">
-              <div>
-                <input type="radio" id="radius2" value="2" name="rad">
-                <label for "radius2">2 miles</label>
-              </div>
-              <div>
-                <input type="radio" id="radius5" value="5" name="rad">
-                <label for "radius5">5 miles</label>
-              </div><div>
-                <input type="radio" id="radius10" value="10" name="rad">
-                <label for "radius10">10 miles</label>
-              </div><div>
-                <input type="radio" id="radius25" value="25" name="rad">
-                <label for "radius25">25 miles</label>
-              </div><div>
-                <input type="radio" id="radius50" value="50" name="rad">
-                <label for "radius50">50 miles</label>
-              </div><div>
-                <input type="radio" id="radius100" value="100" name="rad">
-                <label for "radius100">100 miles</label>
-              </div>
-            </div>
-          </fieldset>
-          <fieldset id="membership-fieldset" role="radiogroup">
-            <legend>Membership Status</legend>
-              <!-- <div class="segmented-control" style="width: 100%; color: #07889b">
-                <input type="radio" name="member" id="membership-all" checked>
-                <input type="radio" name="member" id="membership-mine">
-                <label for="membership-all" data-value="include">All Meetups</label>
-                <label for="membership-mine" data-value="only">My Groups' Meetups</label>
-              </div> -->
-            <div class="membership">
-              <div>
-                <input type="radio" id="membership-all" value="include" name="member">
-                <label for "membership-all">All Meetups</label>
-              </div>
-              <div>
-                <input type="radio" id="membership-mine" value="only" name="member">
-                <label for "membership-mine">My groups' Meetups</label>
-              </div>
-            </div>
-          </fieldset>
-          <div class="button">
-          <button type="submit" id="btn">Apply</button>
-          </div>
-        </form>
-      </div>
-      <div class="map-container">
-        <div id="map">
-        </div>
-      </div>
-      </div>
-
-
-        <!-- <div class="mobileRadius">
-        <button onclick="toggleDropdown()" class="dropbtn">Radius</button>
-          <div id="radiusDropdown" class="dropdownRadiusContent"
-            <ul class="dropdown-radius">
-              <li>2 miles</li>
-              <li>5 miles</li>
-              <li>10 miles</li>
-              <li>25 miles</li>
-              <li>50 miles</li>
-              <li>100 miles</li>
-            </ul>
-          </div>
-        </div>
-        <div class="mobileCategory">
-
-        </div>
-        <div class="mobileKeyword">
-
-        </div>
-        <div class="mobileDates">
-          <button class="dropbtn">Date Range</button>
-          <div id="date-range-dropdown" class="dropdown-content"
-            <ul class="dropdown-date-range">
-              <li>Today</li>
-              <li>Next three days</li>
-              <li>This week</li>
-              <li>Next week</li>
-              <li>This month</li>
-              <li>Next month</li>
-            </ul>
-          </div>
-        </div>
-        <div class="mobileMembership">
-          <button class="dropbtn">Membership</button>
-          <div id="membership-dropdown" class="dropdown-content"
-            <ul class="dropdown-membership">
-              <li>All Meetups</li>
-              <li>My Groups' Meetups</li>
-            </ul>
-          </div>
-        </div> -->
+    <input id="pac-input" class="controls" type="text"
+      placeholder="New location, (ex New York)">
+    <div id="map"></div>
     </main>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkADa0F4n1AvNW8MzwQvf24XQ6ObeXPss&v=3&libraries=places"></script>
     <script src="index.js"></script>

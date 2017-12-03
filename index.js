@@ -109,6 +109,7 @@ function searchButtonHandler(e){
 
   //0. close dropdown
   $('.dropdown-content').hide('slow');
+  $('.closebtn').hide();
 
   //1. get all inputs
   const radius = $('input[name="rad"]:checked').val();
@@ -165,6 +166,10 @@ function displayResults(data){
       url: ev.link
     }
   });
+  console.log(locations);
+  if($.isEmptyObject(locations)){
+    $('.noresults').prop('hidden', false);
+  }  
   showMarkers(locations);
 }
 
@@ -237,7 +242,6 @@ function getCategories() {
 
 function displayCategories(data) {
   const results = data.map((index) => renderResult(index));
-  console.log(results);
   $('.categories').html(results);
 }
 
@@ -292,23 +296,27 @@ function initAutocomplete() {
 
 $(function(){
   //runs once when the page loads
-
   // where you set all your event handlers
-  console.log("hi");
-  // event handler for start button
-  $('.startbtn').on('click', event => {
+
+  // event handler for the Get started button
+  $('#startbtn').on('click', event => {
+    $('.navbar').show();
+    $('.controls').show();
+    $('#map').show();
     initMap();
     getCategories();
     initAutocomplete();
-    console.log("hello");
-    $('.main').show();
-    $('.header').hide();
+    $('h1').hide();
+    $('h2').hide();
+    $('#startbtn').hide();
   });
+
 
   //drop down content handler
   $('.dropbtn').on('click', event => {
     $('.dropdown-content').show('slow');
     $('.closebtn').show('slow');
+    $('.noresults').prop('hidden', true);
   });
 
   $('.closebtn').on('click', event => {
@@ -321,7 +329,7 @@ $(function(){
     e.preventDefault();
   });
 
-  // event handler for the apply button
+  // event handler for the Apply button
   $('#applybtn').click(searchButtonHandler);
 
   //event handler for the dates

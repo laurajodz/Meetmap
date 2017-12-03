@@ -5,58 +5,45 @@
   box-sizing: border-box;
 }
 
-header {
-  font-family: 'Pacifico', cursive;
-  font-size: 45px;
-  font-weight: 700;
-}
-
-header, h1, h2, p {
-  max-width: 500px;
-  margin: 0 auto 20px auto;
-  text-align: center;
-  line-height: 48px;
-}
-
-h2 {
-  line-height: 36px;
-}
-
-p {
-  max-width: 700px;
-  line-height: 1.5;
-}
-
-.help {
-  color: #3d6f72;
-  font-weight: bold;
-  font-size: 32px;
-}
-
-main {
-  display: none;
+html, body, main {
+  height: 100%;
 }
 
 body {
   font-family: 'Lato', sans-serif;
   font-weight: 600;
   line-height: 24px;
-  /*background: #eeaa7b;*/
+  background: #eeaa7b;
 }
 
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+header {
+  font-family: 'Pacifico', cursive;
+  font-size: 45px;
+  font-weight: 700;
+  max-width: 500px;
+  margin: 20px auto 40px auto;
+  text-align: center;
+  line-height: 48px;
 }
 
-.params-container {
-  background: #66b9bf;
-  width: 0%;
+h1, h2 {
+  max-width: 750px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+  line-height: 36px;
 }
 
-.map-container {
-  width: 100%;
+h2 {
+  font-size: 16px;
+}
+
+.help {
+  color: #3d6f72;
+  font-weight: bold;
+}
+
+.navbar, .controls, #map  {
+  display: none;
 }
 
 #map {
@@ -68,37 +55,10 @@ footer {
   text-align: right;
 }
 
-.radius {
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
-  column-count: 2;
-}
-
-.categories {
-  -moz-column-count: 2;
-  -webkit-column-count: 2;
-  column-count: 4;
-}
-
 /*label[name="cat"] {
     display: inline-block;
     width: 200px;
 }*/
-
-.pac-card {
-  margin: 10px 10px 0 0;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  background-color: #fff;
-}
-
-#pac-container {
-  padding-bottom: 12px;
-  margin-right: 12px;
-}
 
 .pac-controls {
   display: inline-block;
@@ -111,7 +71,6 @@ footer {
 }
 
 #pac-input {
-  background-color: #fff;
   font-size: 15px;
   font-weight: 300;
   margin-left: 12px;
@@ -125,20 +84,19 @@ footer {
   border-color: #4d90fe;
 }
 
-#from {
-  margin-left: 5px;
-}
-
-#to {
-  margin-left: 25px;
-}
-
 .button {
   text-align: center;
 }
 
-/* Buttons */
-#btn, #startbtn {
+.noresults {
+  font-size: 12px;
+  border: solid 1px #e37222;
+  padding: 16px;
+  margin: 30px 10px 10px 10px;
+  text-align: center;
+}
+
+#applybtn, #startbtn {
   font-size: 16px;
   border: solid 1px #e37222;
   padding: 16px;
@@ -148,12 +106,10 @@ footer {
   background: #e37222;
 }
 
-/* Search button on hover & focus */
-#btn:hover, #btn:focus, #startbtn:hover, #startbtn:focus {
+#applybtn:hover, #applybtn:focus, #startbtn:hover, #startbtn:focus {
   background-color: #07889b;
 }
 
-/* close X */
 .closebtn {
   display: none;
   font-size: 48px;
@@ -167,69 +123,17 @@ footer {
   border: 1px solid gray;
 }
 
-/*.dropbtn {
-    background-color: #eeaa7b;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #07889b;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown a:hover {background-color: #f1f1f1}
-
-.show {display:block;}*/
-
-/* Navbar container */
 .navbar {
   overflow: hidden;
   height: auto;
   background-color: #66b9bf;
 }
 
-/* Links inside the navbar */
-/*.navbar a {
-  float: left;
-  font-size: 16px;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}*/
-
-/* The dropdown container */
 .dropdown {
   float: left;
   overflow: hidden;
 }
 
-/* Dropdown button */
 .dropdown .dropbtn {
   font-size: 16px;
   border: none;
@@ -238,7 +142,6 @@ footer {
   background: #e37222;
 }
 
-/* Add a red background color to navbar links on hover */
 .navbar a:hover, .dropdown:hover .dropbtn {
   background-color: #07889b;
 }
@@ -247,7 +150,6 @@ footer {
   border: solid 1px #e37222;
 }
 
-/* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
   position: absolute;
@@ -259,12 +161,26 @@ footer {
   opacity: .9;
 }
 
-/* Show the dropdown menu on hover */
-/*.dropdown:hover .dropdown-content {
-  display: block;
+.radius {
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+  column-count: 2;
+}
+
+.categories {
+  -moz-column-count: 4;
+  -webkit-column-count: 4;
+  column-count: 4;
+}
+
+/*#from {
+  margin-left: 5px;
+}
+
+#to {
+  margin-left: 25px;
 }*/
 
-/* Create columns that float next to each other */
 .column1, .column2, .column4, .column5 {
   float: left;
   width: 18%;
@@ -279,11 +195,6 @@ footer {
   height: 100%;
 }
 
-/* Add a background color on hover */
-/*.column a:hover {
-  background-color: #ddd;
-}*/
-
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -295,5 +206,24 @@ footer {
   .column1, .column2, .column3, .column4, .column5 {
     width: 100%;
     height: auto;
+  }
+  .categories {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+  }
+  .radius {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
+}
+
+
+@media (max-width: 575px) {
+  .categories {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
   }
 }

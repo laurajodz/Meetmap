@@ -161,6 +161,19 @@ footer {
   opacity: .9;
 }
 
+input[type=text] {
+  padding: 5px;
+}
+
+input[type=textbox] {
+  padding: 5px;
+}
+
+
+input {
+  cursor: pointer;
+}
+
 .radius {
   -moz-column-count: 2;
   -webkit-column-count: 2;
@@ -172,14 +185,6 @@ footer {
   -webkit-column-count: 4;
   column-count: 4;
 }
-
-/*#from {
-  margin-left: 5px;
-}
-
-#to {
-  margin-left: 25px;
-}*/
 
 .column1, .column2, .column4, .column5 {
   float: left;

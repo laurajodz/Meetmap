@@ -115,18 +115,18 @@ function searchButtonHandler(e){
   //1. get all inputs
   const radius = $('input[name="rad"]:checked').val();
 
-  var checkboxes = document.getElementsByName("cat");
-  var catsChecked = [];
-  for (var i=0; i<checkboxes.length; i++) {
-     if (checkboxes[i].checked) {
-        catsChecked.push(checkboxes[i]);
-     }
-  }
-  console.log(catsChecked);
+  // var checkboxes = document.getElementsByName("cat");
+  // var catsChecked = [];
+  // for (var i=0; i<checkboxes.length; i++) {
+  //    if (checkboxes[i].checked) {
+  //       catsChecked.push(checkboxes[i]);
+  //    }
+  // }
+  // console.log(catsChecked);
   // Return the array if it is non-empty, or null
   // return catsChecked.length > 0 ? catsChecked : null;
   //if($.isEmptyObject(checkboxes)){
-  // const category = $('input[name="cat"]:checked').val();
+  const category = $('input[name="cat"]:checked').val();
 
   const key = $('#keyword').val();
 
@@ -142,7 +142,7 @@ function searchButtonHandler(e){
     key: "524472e125072465129556564d2f74",
     radius: radius,
     fields: 'group_topics',
-    // topic_category: category,
+    topic_category: category,
     // topic_category: catsChecked,
     text: key,
     start_date_range: fromdate,
@@ -150,7 +150,6 @@ function searchButtonHandler(e){
     self_groups: membership,
     callback:"handlerequest"
   }
-
   if (lat) {
     q.lat = lat
   }
@@ -183,6 +182,7 @@ function displayResults(data){
       url: ev.link
     }
   });
+  console.log(locations);
   if($.isEmptyObject(locations)){
     $('.noresults').prop('hidden', false);
   }
@@ -276,7 +276,7 @@ function displayCategories(data) {
 
 function renderResult(result) {
   return `<div>
-    <input type="checkbox" name="cat" id=${result.id} value=${result.name}>
+    <input type="radio" name="cat" id=${result.id} value=${result.name}>
     <label for=${result.id}>${result.name}</label>
   </div>`;
 }

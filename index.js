@@ -1,4 +1,5 @@
 var map;
+var catList = [];
 var markers = [];
 var lat;
 var lon;
@@ -113,12 +114,27 @@ function searchButtonHandler(e){
 
   //1. get all inputs
   const radius = $('input[name="rad"]:checked').val();
-  const category = $('input[name="cat"]:checked').val();
+
+  var checkboxes = document.getElementsByName("cat");
+  var catsChecked = [];
+  for (var i=0; i<checkboxes.length; i++) {
+     if (checkboxes[i].checked) {
+        catsChecked.push(checkboxes[i]);
+     }
+  }
+  console.log(catsChecked);
+  // Return the array if it is non-empty, or null
+  // return catsChecked.length > 0 ? catsChecked : null;
+  //if($.isEmptyObject(checkboxes)){
+  // const category = $('input[name="cat"]:checked').val();
+
   const key = $('#keyword').val();
+
   let fromdate = $('#from').datepicker("getDate");
   fromdate = $.datepicker.formatDate("yy-mm-ddT00:00:00", fromdate);
   let todate = $('#to').datepicker("getDate");
   todate = $.datepicker.formatDate("yy-mm-ddT23:59:59", todate);
+
   const membership = $('input[name="member"]:checked').val();
 
   //2. make the call to Meetup
@@ -126,7 +142,8 @@ function searchButtonHandler(e){
     key: "524472e125072465129556564d2f74",
     radius: radius,
     fields: 'group_topics',
-    topic_category: category,
+    // topic_category: category,
+    // topic_category: catsChecked,
     text: key,
     start_date_range: fromdate,
     end_date_range: todate,
@@ -166,10 +183,9 @@ function displayResults(data){
       url: ev.link
     }
   });
-  console.log(locations);
   if($.isEmptyObject(locations)){
     $('.noresults').prop('hidden', false);
-  }  
+  }
   showMarkers(locations);
 }
 
@@ -240,18 +256,30 @@ function getCategories() {
   })
 }
 
+
 function displayCategories(data) {
-  const results = data.map((index) => renderResult(index));
+  for (var i=0; i<data.length; i++) {
+    var name = data[i].name;
+    var id = data[i].id;
+    var list = {
+      name: name,
+      id: id
+    }
+    catList.push(list);
+  };
+  // sort is not working
+  catList.sort();
+  const results = data.map((catList) => renderResult(catList));
   $('.categories').html(results);
+  // renderResult(catList);
 }
 
 function renderResult(result) {
   return `<div>
-    <input type="radio" id=${result.id} value=${result.name} name="cat">
+    <input type="checkbox" name="cat" id=${result.id} value=${result.name}>
     <label for=${result.id}>${result.name}</label>
   </div>`;
 }
-
 
 //location handler
 function initAutocomplete() {
@@ -310,7 +338,6 @@ $(function(){
     $('h2').hide();
     $('#startbtn').hide();
   });
-
 
   //drop down content handler
   $('.dropbtn').on('click', event => {

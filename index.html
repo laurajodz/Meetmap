@@ -14,20 +14,27 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300|Pacifico" rel="stylesheet">
   </head>
   <body>
-    <header role="banner">Meetmap</header>
-      <h1>We make it easy to see Meetup events on a map</h1>
-      <h2>Have you ever wanted to see multiple Meetup events on a map?</h2>
-      <div class="button">
-        <button type="submit" id="startbtn">Get started</button>
-      </div>
-    <main role="main">
+    <header role="banner" class="header">Meetmap</header>
+    <!-- <h1>See Meetup events on a map</h1> -->
+    <h2>Meetups let you get together with real people in real life to learn,
+    create and grow. <br/>But how do you locate these meetings?<br/>
+    <span class="help">Meetmap is here to help.</span></h2>
+    <p>Simply choose your events based on criteria such as category, keyword,
+    and date, and Meetmap shows your events on a map.
+    Interested in French language Meetups happening this week,
+    in a five-mile radius of your home? Meetmap can show you.</p>
+    <p>Let's get started finding your next event.</p>
+    <div class="button">
+      <button type="submit" id="startbtn">Get started</button>
+    </div>
+    <main role="main" aria-live="assertive" class="main">
       <div class="navbar">
         <div class="dropdown">
           <button class="dropbtn">Search for events
             <i class="fa fa-caret-down"></i>
           </button>
+          <div class="closebtn">&times;</div>
           <div class="dropdown-content">
-            <div class="closebtn">&times;</div>
             <div class="row">
               <div class="column1">
                 <h3>Date</h3>
@@ -54,23 +61,23 @@
                   <div class="radius">
                     <div>
                       <input type="radio" id="radius2" value="2" name="rad">
-                      <label for "radius2">2 miles</label>
+                      <label for="radius2">2 miles</label>
                     </div>
                     <div>
                       <input type="radio" id="radius5" value="5" name="rad">
-                      <label for "radius5">5 miles</label>
+                      <label for="radius5">5 miles</label>
                     </div><div>
                       <input type="radio" id="radius10" value="10" name="rad">
-                      <label for "radius10">10 miles</label>
+                      <label for="radius10">10 miles</label>
                     </div><div>
                       <input type="radio" id="radius25" value="25" name="rad">
-                      <label for "radius25">25 miles</label>
+                      <label for="radius25">25 miles</label>
                     </div><div>
                       <input type="radio" id="radius50" value="50" name="rad">
-                      <label for "radius50">50 miles</label>
+                      <label for="radius50">50 miles</label>
                     </div><div>
                       <input type="radio" id="radius100" value="100" name="rad">
-                      <label for "radius100">100 miles</label>
+                      <label for="radius100">100 miles</label>
                     </div>
                   </div>
               </div>
@@ -78,16 +85,16 @@
                 <h3>Membership</h3>
                   <div>
                     <input type="radio" id="membership-all" value="include" name="member">
-                    <label for "membership-all">All Meetups</label>
+                    <label for="membership-all">All Meetups</label>
                   </div>
                   <div>
-                    <input type="radio" id="membership-mine" value="only" name="member">
-                    <label for "membership-mine">My groups' Meetups</label>
+                    <input type="radio" id="membership-mine" value="only" name="member" checked>
+                    <label for="membership-mine">My groups' Meetups</label>
                   </div>
               </div>
               <div class="column6">
                 <div class="button">
-                  <button type="submit" id="btn">Apply</button>
+                  <button type="submit" id="applybtn">Apply</button>
                 </div>
               </div>
             </div>

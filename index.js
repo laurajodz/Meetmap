@@ -237,6 +237,7 @@ function getCategories() {
 
 function displayCategories(data) {
   const results = data.map((index) => renderResult(index));
+  console.log(results);
   $('.categories').html(results);
 }
 
@@ -289,45 +290,39 @@ function initAutocomplete() {
 }
 
 
-//added
-// function openNav() {
-//   document.getElementById("mySidenav").style.width = "250px";
-// }
-//
-// function closeNav() {
-//   document.getElementById("mySidenav").style.width = "0";
-// }
-
-
 $(function(){
   //runs once when the page loads
-  initMap();
-  getCategories();
-  initAutocomplete();
 
   // where you set all your event handlers
+  console.log("hi");
+  // event handler for start button
+  $('.startbtn').on('click', event => {
+    initMap();
+    getCategories();
+    initAutocomplete();
+    console.log("hello");
+    $('.main').show();
+    $('.header').hide();
+  });
 
   //drop down content handler
   $('.dropbtn').on('click', event => {
     $('.dropdown-content').show('slow');
+    $('.closebtn').show('slow');
   });
 
   $('.closebtn').on('click', event => {
     $('.dropdown-content').hide('slow');
+    $('.closebtn').hide();
   });
-
-
 
   //form handler
   $('#params').submit(function(e){
     e.preventDefault();
   });
 
-  //added: event handler for the sidenav
-
-
-  // event handler for the Button
-  $('#btn').click(searchButtonHandler);
+  // event handler for the apply button
+  $('#applybtn').click(searchButtonHandler);
 
   //event handler for the dates
   var dateFormat = "yy-mm-dd",

@@ -197,7 +197,7 @@ function showMarkers(locations) {
 
   var pinColor = "E37222";
   var pinImage = new google.maps.MarkerImage
-  ("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" +
+  ("https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" +
   pinColor);
   var infowindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();

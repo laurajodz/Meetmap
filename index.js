@@ -356,8 +356,13 @@ $(function(){
     e.preventDefault();
   });
 
-  // event handler for the Apply button
+  //event handler for the Apply button
   $('#applybtn').click(searchButtonHandler);
+
+  //event handler for clearing Category
+  $('#clearbtn').on('click', event => {
+    $('input[name="cat"]').prop('checked', false);
+  });
 
   //event handler for the dates
   var dateFormat = "yy-mm-dd",

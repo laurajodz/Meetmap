@@ -127,6 +127,7 @@ function searchButtonHandler(e){
   // return catsChecked.length > 0 ? catsChecked : null;
   //if($.isEmptyObject(checkboxes)){
   const category = $('input[name="cat"]:checked').val();
+  console.log(category);
 
   const key = $('#keyword').val();
 
@@ -150,6 +151,7 @@ function searchButtonHandler(e){
     self_groups: membership,
     callback:"handlerequest"
   }
+  console.log(q);
   if (lat) {
     q.lat = lat
   }
@@ -256,27 +258,34 @@ function getCategories() {
   })
 }
 
-
+// sort is not working
 function displayCategories(data) {
-  for (var i=0; i<data.length; i++) {
-    var name = data[i].name;
-    var id = data[i].id;
-    var list = {
-      name: name,
-      id: id
-    }
-    catList.push(list);
-  };
-  // sort is not working
-  catList.sort();
-  const results = data.map((catList) => renderResult(catList));
-  $('.categories').html(results);
-  // renderResult(catList);
+  const results = data.map((index) => renderResult(index));
+  $('.categories').html(results.sort(results.value));
+  console.log(results);
 }
+
+// function displayCategories(data) {
+//   for (var i=0; i<data.length; i++) {
+//     var name = data[i].name;
+//     var id = data[i].id;
+//     var list = {
+//       name: name,
+//       id: id
+//     }
+//     catList.push(list);
+//     console.log(catList);
+//   };
+  // sort is not working
+  // catList.sort();
+  // const results = data.map((catList) => renderResult(catList));
+  // $('.categories').html(results.sort());
+  // renderResult(catList);
+// }
 
 function renderResult(result) {
   return `<div>
-    <input type="radio" name="cat" id=${result.id} value=${result.name}>
+    <input type="radio" name="cat" id=${result.id} value=${result.id}>
     <label for=${result.id}>${result.name}</label>
   </div>`;
 }

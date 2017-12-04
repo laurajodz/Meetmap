@@ -134,21 +134,15 @@ img {
   background-color: #aaaaaa;
 }
 
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
 .dropdown .dropbtn {
   font-size: 16px;
-  /*border: solid 1px black;*/
   outline: none;
   padding: 14px 16px;
   background: #29bf89;
   cursor: pointer;
 }
 
-.navbar a:hover, .dropdown:hover .dropbtn {
+.dropbtn:hover {
   background-color: #20986d;
 }
 
@@ -197,19 +191,10 @@ input {
   height: 100%;
 }
 
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
   clear: both;
-}
-
-
-@media (max-width: 1300px) {
-  body {
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 
 @media (max-width: 1120px) {

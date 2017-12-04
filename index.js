@@ -4,7 +4,6 @@ var lat;
 var lon;
 
 function initMap() {
-
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.0902, lng: -95.7129},
     zoom: 4,
@@ -25,27 +24,14 @@ function initMap() {
 
 
 function searchButtonHandler(e){
-
   //Close dropdown
   $('.dropdown-content').hide('slow');
   $('.closebtn').hide();
 
-  //1. get all inputs
+  //Get all inputs
   const radius = $('input[name="rad"]:checked').val();
 
-  // var checkboxes = document.getElementsByName("cat");
-  // var catsChecked = [];
-  // for (var i=0; i<checkboxes.length; i++) {
-  //    if (checkboxes[i].checked) {
-  //       catsChecked.push(checkboxes[i]);
-  //    }
-  // }
-  // console.log(catsChecked);
-  // Return the array if it is non-empty, or null
-  // return catsChecked.length > 0 ? catsChecked : null;
-  //if($.isEmptyObject(checkboxes)){
   const category = $('input[name="cat"]:checked').val();
-  console.log(category);
 
   const key = $('#keyword').val();
 
@@ -56,7 +42,7 @@ function searchButtonHandler(e){
 
   const membership = $('input[name="member"]:checked').val();
 
-  //2. make the call to Meetup
+  //Make the call to Meetup
   const q = {
     key: "524472e125072465129556564d2f74",
     radius: radius,
@@ -68,7 +54,6 @@ function searchButtonHandler(e){
     self_groups: membership,
     callback:"handlerequest"
   }
-  console.log(q);
   if (lat) {
     q.lat = lat
   }
@@ -101,7 +86,6 @@ function displayResults(data){
       url: ev.link
     }
   });
-  console.log(locations);
   if($.isEmptyObject(locations)){
     $('.noresults').prop('hidden', false);
   }
@@ -109,9 +93,7 @@ function displayResults(data){
 }
 
 
-//3. display markers
 function showMarkers(locations) {
-
   deleteMarkers();
 
   var pinColor = "29bf89";
@@ -122,12 +104,10 @@ function showMarkers(locations) {
   var bounds = new google.maps.LatLngBounds();
 
   for (var i = 0; i < locations.length; i++) {
-    // Get the position, title, group, and url from the location array.
     var position = locations[i].location;
     var title = locations[i].title;
     var group = locations[i].group;
     var url = locations[i].url;
-    // Create a marker per location
     var marker = new google.maps.Marker({
       map: map,
       position: position,
@@ -139,11 +119,11 @@ function showMarkers(locations) {
       id: i
     });
     markers.push(marker);
+
+    //Extend the map boundaries to show all markers
     bounds.extend(marker.position);
-    //Create an onclick event to open an infowindow at each marker and
-    //populate the infowindow when the marker is clicked. We'll only allow
-    //one infowindow which will open at the marker that is clicked, and
-    //populate based on that markers position.
+
+    //Display infowindow
     google.maps.event.addListener(marker, 'click', (function (marker, i) {
       return function () {
         infowindow.setContent('<a href="' + locations[i].url + '" target="_blank">'
@@ -152,11 +132,12 @@ function showMarkers(locations) {
       }
     })(marker, i));
   }
-  // Extend the boundaries of the map
   map.fitBounds(bounds);
 }
 
+
 function deleteMarkers() {
+  //Remove markers from previous search
   markers.forEach(function(m) {
     m.setMap(null);
   })
@@ -165,6 +146,7 @@ function deleteMarkers() {
 
 
 function getCategories() {
+  //Make a call to Meetup to get list of current categories
   $.ajax({
     url:'https://api.meetup.com/find/topic_categories',
     method:'GET',
@@ -175,59 +157,39 @@ function getCategories() {
   })
 }
 
-// sort is not working
+
 function displayCategories(data) {
-  const results = data.map((index) => renderResult(index));
-  $('.categories').html(results.sort(results.value));
-  console.log(results);
+  const results = data.map((index) => renderCategories(index));
+  $('.categories').html(results.sort());
 }
 
-// function displayCategories(data) {
-//   for (var i=0; i<data.length; i++) {
-//     var name = data[i].name;
-//     var id = data[i].id;
-//     var list = {
-//       name: name,
-//       id: id
-//     }
-//     catList.push(list);
-//     console.log(catList);
-//   };
-  // sort is not working
-  // catList.sort();
-  // const results = data.map((catList) => renderResult(catList));
-  // $('.categories').html(results.sort());
-  // renderResult(catList);
-// }
 
-function renderResult(result) {
+function renderCategories(result) {
   return `<div>
     <input type="radio" name="cat" id=${result.id} value=${result.id}>
     <label for=${result.id}>${result.name}</label>
   </div>`;
 }
 
-//location handler
-function initAutocomplete() {
 
-  // Create the search box and link it to the UI element.
+function initAutocomplete() {
+  //Create the location search box
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-  // Bias the SearchBox results towards current map's viewport.
+  //Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
+  //Listen for the event fired when the user selects a prediction and retrieve
+  //more details for that place.
   searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
-
     if (places.length == 0) {
       return;
     }
-    // For each place, get the icon, name and location.
+    //For each place, get the icon, name and location.
     var bounds = new google.maps.LatLngBounds();
     places.forEach(function(place) {
       if (!place.geometry) {
@@ -235,7 +197,7 @@ function initAutocomplete() {
         return;
       }
       if (place.geometry.viewport) {
-        // Only geocodes have viewport.
+        //Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
       } else {
           bounds.extend(place.geometry.location);
@@ -249,10 +211,9 @@ function initAutocomplete() {
 
 
 $(function(){
-  //runs once when the page loads
-  // where you set all your event handlers
+  //Runs once when the page loads, this is where all event handlers are set
 
-  // event handler for the Get started button
+  //Event handler for Start button
   $('#startbtn').on('click', event => {
     $('.navbar').show();
     $('.controls').show();
@@ -267,7 +228,7 @@ $(function(){
     $('footer').hide();
   });
 
-  //drop down content handler
+  //Event handler for drop down content
   $('.dropbtn').on('click', event => {
     $('.dropdown-content').show('slow');
     $('.closebtn').show('slow');
@@ -284,20 +245,15 @@ $(function(){
     $('.closebtn').hide();
   })
 
-  //form handler
-  $('#params').submit(function(e){
-    e.preventDefault();
-  });
-
-  //event handler for the Apply button
+  //Event handler for Apply button
   $('#applybtn').click(searchButtonHandler);
 
-  //event handler for clearing Category
+  //Event handler for clearing category
   $('#clearbtn').on('click', event => {
     $('input[name="cat"]').prop('checked', false);
   });
 
-  //event handler for the dates
+  //Event handler for dates
   var dateFormat = "yy-mm-dd",
   from = $( "#from" ).datepicker({
       minDate: 0,

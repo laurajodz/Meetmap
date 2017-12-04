@@ -20,8 +20,10 @@
     <h2>Simply select your criteria such as category, keyword, and date, and Meetmap
     shows your events on the map.<br/>
     Interested in French language Meetups happening this week,
-    in a five-mile radius of your home?<br/> Meetmap can show you.<br/>
+    in a five-mile radius of your home? Or perhaps you are travelling and want to network
+    with folks in the local tech scene tonight?<br/> Meetmap can show you.<br/>
     Let's get started finding your next event!</h2>
+    <img src="marker.png" id="marker" alt="Map marker image">
     <div class="button">
       <button type="submit" id="startbtn">Start</button>
     </div>
@@ -45,17 +47,23 @@
                   <label for="keyword">Enter a keyword</label>
                   <input type="textbox" id="keyword" value="" name="key">
               </div>
-              <div class="column3">
-                <h3>Category</h3>
-                  <button type="clear" id="clearbtn">Clear selection</button>
+              <div class="column3" role="group" aria-labelledby="catId">
+                <h3 id="catId">Category</h3>
                   <div class="categories">
 
                   </div>
               </div>
             </div>
             <div class="row">
-              <div class="column4">
-                <h3>Radius</h3>
+              <div class="column1"></div>
+              <div class="column2"></div>
+              <div class="column3">
+              <button type="clear" id="clearbtn">Clear category</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column4" role="group" aria-labelledby="radiusId">
+                <h3 id="radiusId">Radius</h3>
                   <div class="radius">
                     <div>
                       <input type="radio" id="radius2" value="2" name="rad">
@@ -79,8 +87,8 @@
                     </div>
                   </div>
               </div>
-              <div class="column5">
-                <h3>Membership</h3>
+              <div class="column5" role="group" aria-labelledby="memId">
+                <h3 id="memId">Membership</h3>
                   <div>
                     <input type="radio" id="membership-all" value="include" name="member">
                     <label for="membership-all">All Meetups</label>
@@ -99,7 +107,7 @@
           </div>
         </div>
       </div>
-    <input id="pac-input" class="controls" type="text"
+    <input id="pac-input" aria-label="type in any location" class="controls" type="text"
       placeholder="New location, (ex New York)">
     <div id="map"></div>
     </main>

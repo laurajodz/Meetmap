@@ -1,95 +1,13 @@
 var map;
-var catList = [];
 var markers = [];
 var lat;
 var lon;
 
 function initMap() {
-  var styles = [
-    {
-        "featureType": "administrative",
-        "elementType": "labels.text.fill",
-        "stylers": [
-            {
-                "color": "#444444" //gray
-            }
-        ]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#f2f2f2" //light gray
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 45
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "labels.icon",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [
-            {
-                "color": "#07889B"  //blue
-            },
-            {
-                "visibility": "on"
-            }
-        ]
-    }
-]
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.0902, lng: -95.7129},
     zoom: 4,
-    styles: styles,
     mapTypeControl: false
   });
 
@@ -108,7 +26,7 @@ function initMap() {
 
 function searchButtonHandler(e){
 
-  //0. close dropdown
+  //Close dropdown
   $('.dropdown-content').hide('slow');
   $('.closebtn').hide();
 
@@ -144,7 +62,6 @@ function searchButtonHandler(e){
     radius: radius,
     fields: 'group_topics',
     topic_category: category,
-    // topic_category: catsChecked,
     text: key,
     start_date_range: fromdate,
     end_date_range: todate,
@@ -197,7 +114,7 @@ function showMarkers(locations) {
 
   deleteMarkers();
 
-  var pinColor = "E37222";
+  var pinColor = "29bf89";
   var pinImage = new google.maps.MarkerImage
   ("https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" +
   pinColor);
@@ -346,6 +263,8 @@ $(function(){
     $('h1').hide();
     $('h2').hide();
     $('#startbtn').hide();
+    $('#marker').hide();
+    $('footer').hide();
   });
 
   //drop down content handler
@@ -359,6 +278,11 @@ $(function(){
     $('.dropdown-content').hide('slow');
     $('.closebtn').hide();
   });
+
+  $('#map').on('click', event => {
+    $('.dropdown-content').hide('slow');
+    $('.closebtn').hide();
+  })
 
   //form handler
   $('#params').submit(function(e){

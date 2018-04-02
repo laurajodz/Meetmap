@@ -12,17 +12,36 @@ html, body, main {
 body {
   font-family: 'Lato', sans-serif;
   font-weight: 600;
-  line-height: 24px;
+}
+
+.container {
+  position: relative;
+  text-align: center;
 }
 
 header {
   font-family: 'Pacifico', cursive;
-  font-size: 45px;
+  font-size: 40px;
   font-weight: 700;
   max-width: 500px;
-  margin: 20px auto 40px auto;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 50px;
   text-align: center;
-  line-height: 48px;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+#city {
+  width: 100%
+}
+
+.subtitle {
+  margin-top: 40px;
 }
 
 h1, h2 {
@@ -68,7 +87,7 @@ footer {
   font-size: 15px;
   font-weight: 300;
   margin-left: 12px;
-  padding: 0 11px 0 13px;
+  padding: 20px;
   text-overflow: ellipsis;
   width: 400px;
 }
@@ -114,7 +133,7 @@ img {
   position: absolute;
   right: 10px;
   float: right;
-  transform: translate(-5px, -40px);
+  transform: translate(-5px, -50px);
   cursor: pointer;
   padding: 5px;
   color: black;
@@ -137,7 +156,8 @@ img {
 .dropdown .dropbtn {
   font-size: 16px;
   outline: none;
-  padding: 14px 16px;
+  padding: 24px 36px;
+  margin-top 20px;
   background: #29bf89;
   cursor: pointer;
 }
@@ -195,6 +215,18 @@ input {
   content: "";
   display: table;
   clear: both;
+}
+
+@media (min-width: 500px){
+  .header {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 1400px){
+  .header {
+    font-size: 60px;
+  }
 }
 
 @media (max-width: 1120px) {

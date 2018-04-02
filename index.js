@@ -223,7 +223,7 @@ $(function(){
     initAutocomplete();
     $('h1').hide();
     $('h2').hide();
-    $('#city').hide();
+    $('.container').hide();
     $('#startbtn').hide();
     $('#marker').hide();
     $('footer').hide();

@@ -30,10 +30,9 @@ header {
   padding-bottom: 50px;
   text-align: center;
   position: absolute;
-  top: 15%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
-
 }
 
 #city {
@@ -49,6 +48,7 @@ h1, h2 {
   margin: 0 auto 20px auto;
   text-align: center;
   line-height: 36px;
+  padding: 20px;
 }
 
 h2 {
@@ -107,6 +107,8 @@ footer {
   text-align: center;
   cursor: pointer;
   background: #aaaaaa;
+  border-radius: 10px;
+  border: 1px solid #aaaaaa;
 }
 
 #applybtn:hover, #applybtn:focus, #startbtn:hover, #startbtn:focus {
@@ -133,10 +135,11 @@ img {
   position: absolute;
   right: 10px;
   float: right;
-  transform: translate(-5px, -50px);
+  transform: translate(-5px, -10px);
   cursor: pointer;
   padding: 5px;
   color: black;
+  font-family: 'Lato', sans-serif;
 }
 
 .noresults {
@@ -145,6 +148,7 @@ img {
   padding: 16px;
   margin: 30px 10px 10px 10px;
   text-align: center;
+  font-family: 'Lato', sans-serif;
 }
 
 .navbar {
@@ -153,11 +157,24 @@ img {
   background-color: #aaaaaa;
 }
 
+.dropdown {
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.dropbtn {
+  float: left;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+}
+
 .dropdown .dropbtn {
   font-size: 16px;
   outline: none;
-  padding: 24px 36px;
-  margin-top 20px;
+  padding: 18px 18px;
   background: #29bf89;
   cursor: pointer;
 }
@@ -175,6 +192,9 @@ img {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   opacity: .9;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  text-align: left;
 }
 
 input[type=text], input[type=textbox] {

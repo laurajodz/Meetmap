@@ -33,6 +33,7 @@ header {
   top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-shadow: 5px 5px #888888;
 }
 
 #city {
@@ -86,7 +87,7 @@ footer {
 #pac-input {
   font-size: 15px;
   font-weight: 300;
-  margin-left: 12px;
+  /* margin-left: 12px; */
   padding: 20px;
   text-overflow: ellipsis;
   width: 400px;

@@ -87,7 +87,7 @@ function displayResults(data){
     }
   });
   if($.isEmptyObject(locations)){
-    $('.noresults').prop('hidden', false);
+    alert("Sorry, no results. Try again");
   }
   showMarkers(locations);
 }
@@ -233,7 +233,6 @@ $(function(){
   $('.dropbtn').on('click', event => {
     $('.dropdown-content').show('slow');
     $('.closebtn').show('slow');
-    $('.noresults').prop('hidden', true);
   });
 
   $('.closebtn').on('click', event => {

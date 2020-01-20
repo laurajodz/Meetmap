@@ -1,3 +1,5 @@
+Update: Unfortauntely, I had to take down Meetmap because Meetup no longer offer access to its API unless you have a Pro account. RIP Meetmap <3
+
 Meetmap
 
 
